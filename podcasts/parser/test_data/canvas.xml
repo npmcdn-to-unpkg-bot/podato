@@ -1,0 +1,98 @@
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" xmlns:admin="http://webns.net/mvcb/" xmlns:atom="http://www.w3.org/2005/Atom/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" version="2.0">
+  <channel>
+    <title>Canvas</title>
+    <link>https://www.relay.fm/canvas</link>
+    <pubDate>Fri, 22 Jan 2016 10:15:00 GMT</pubDate>
+    <description>Hosted by Federico Viticci and Fraser Speirs, Canvas is a podcast all about mobile productivity. Armed with iOS, Federico and Fraser will be walking through workflows, exploring the best apps for the iPad and iPhone and helping users solve problems. Hosted by Federico Viticci and Fraser Speirs.</description>
+    <language>en-US</language>
+    <copyright>Copyright © 2016 Relay FM</copyright>
+    <itunes:author>Relay FM</itunes:author>
+    <itunes:keywords>iPad, iOS, iPhone, workflows, productivity</itunes:keywords>
+    <itunes:explicit>clean</itunes:explicit>
+    <itunes:image href="http://relayfm.s3.amazonaws.com/uploads/broadcast/image/25/canvas_artwork.png"/>
+    <itunes:owner>
+      <itunes:name>Relay FM</itunes:name>
+      <itunes:email>hello@relay.fm</itunes:email>
+    </itunes:owner>
+    <itunes:block>no</itunes:block>
+    <itunes:category text="Technology"/>
+    <itunes:category text="Technology">
+      <itunes:category text="Gadgets"/>
+    </itunes:category>
+    <itunes:category text="Technology">
+      <itunes:category text="Software How-To"/>
+    </itunes:category>
+
+
+
+
+    <item>
+      <title>Canvas 2: Document Providers</title>
+      <description>Federico and Fraser go in-depth on the Document Picker and Document Provider system in iOS 9.</description>
+      <pubDate>Fri, 22 Jan 2016 10:15:00 GMT</pubDate>
+      <enclosure url="http://www.podtrac.com/pts/redirect.mp3/traffic.libsyn.com/relaycanvas/Canvas-002-2016-01-12.mp3" length="36043673" type="audio/mp3"/>
+      <link>http://relay.fm/canvas/2</link>
+      <guid>http://relay.fm/canvas/2</guid>
+      <itunes:author>Federico Viticci and Fraser Speirs</itunes:author>
+      <itunes:subtitle>Federico and Fraser go in-depth on the Document Picker and Document Provider system in iOS 9.</itunes:subtitle>
+      <itunes:summary>Federico and Fraser go in-depth on the Document Picker and Document Provider system in iOS 9.</itunes:summary>
+      <itunes:explicit>clean</itunes:explicit>
+      <itunes:duration>2252</itunes:duration>
+      <content:encoded>&lt;p&gt;Federico and Fraser go in-depth on the Document Picker and Document Provider system in iOS 9.&lt;/p&gt;
+ &lt;h4&gt;Links and Show Notes&lt;/h4&gt; &lt;h5&gt;Apps of Note&lt;/h5&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://itunes.apple.com/us/app/dropbox/id327630330?mt=8&amp;amp;uo=4"&gt;Dropbox&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://itunes.apple.com/us/app/google-drive-free-online-storage/id507874739?mt=8&amp;amp;uo=4"&gt;Google Drive&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://itunes.apple.com/us/app/box-for-iphone-and-ipad/id290853822?mt=8&amp;amp;uo=4"&gt;Box&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://itunes.apple.com/us/app/onedrive-cloud-storage-for/id477537958?mt=8&amp;amp;uo=4"&gt;OneDrive&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://itunes.apple.com/us/app/pdf-expert-5-fill-forms-annotate/id743974925?mt=8&amp;amp;uo=4"&gt;PDF Expert&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://itunes.apple.com/us/app/audioshare-audio-document/id543859300?mt=8&amp;amp;uo=4"&gt;Kymatica Audioshare&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://itunes.apple.com/us/app/working-copy-powerful-git/id896694807?mt=8&amp;amp;uo=4"&gt;Working Copy&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://itunes.apple.com/us/app/transmit/id917432930?mt=8&amp;amp;uo=4"&gt;Transmit&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h5&gt;Workflows&lt;/h5&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://workflow.is/workflows/9a0a42dcdc9e4e7abf7432f39e512648"&gt;Pick file, upload it elsewhere, share links with people&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://workflow.is/workflows/5f200ab7b9cf4e058b9c5bad0b115e06"&gt;Save images from Photos to document provider&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+ </content:encoded>
+      <itunes:image href="http://relayfm.s3.amazonaws.com/uploads/broadcast/image/25/canvas_artwork.png"/>
+    </item>
+    <item>
+      <title>Canvas 1: Download and Upload Files</title>
+      <description>In this initial episode of Canvas, Federico and Fraser discuss the available tools and techniques for downloading files from the web and uploading files back to websites. This is a task that was difficult-to-impossible on iOS before iOS 9 was released but is now easy.</description>
+      <pubDate>Fri, 08 Jan 2016 14:30:00 GMT</pubDate>
+      <enclosure url="http://www.podtrac.com/pts/redirect.mp3/traffic.libsyn.com/relaycanvas/Canvas_001.mp3" length="30229860" type="audio/mp3"/>
+      <link>http://relay.fm/canvas/1</link>
+      <guid>http://relay.fm/canvas/1</guid>
+      <itunes:author>Federico Viticci and Fraser Speirs</itunes:author>
+      <itunes:subtitle>Federico and Fraser discuss uploading and downloading files from and to websites on iOS.</itunes:subtitle>
+      <itunes:summary>Federico and Fraser discuss uploading and downloading files from and to websites on iOS.</itunes:summary>
+      <itunes:explicit>clean</itunes:explicit>
+      <itunes:duration>1889</itunes:duration>
+      <content:encoded>&lt;p&gt;In this initial episode of Canvas, Federico and Fraser discuss the available tools and techniques for downloading files from the web and uploading files back to websites. This is a task that was difficult-to-impossible on iOS before iOS 9 was released but is now easy.&lt;/p&gt;
+ &lt;h4&gt;Links and Show Notes&lt;/h4&gt; &lt;h5&gt;Featured Apps&lt;/h5&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Safari&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://appsto.re/gb/mKwxs.i"&gt;iCab Mobile&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://appsto.re/gb/Vw_Vv.i"&gt;Readdle Documents 5&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://appsto.re/gb/oanvU.i"&gt;GoodReader&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://appsto.re/gb/2IzJ2.i"&gt;Workflow&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://appsto.re/gb/UqWkO.i"&gt;Editorial&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h5&gt;Relevant Workflows&lt;/h5&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://workflow.is/workflows/bd78d20c01a941048c285a8cc096cc40"&gt;Download File - Workflow&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.editorial-workflows.com/workflow/5775239921270784/taiGbNd0Op0"&gt;Download File - Editorial&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+ </content:encoded>
+      <itunes:image href="http://relayfm.s3.amazonaws.com/uploads/broadcast/image/25/canvas_artwork.png"/>
+    </item>
+  </channel>
+</rss>
