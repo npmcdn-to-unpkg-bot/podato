@@ -1,8 +1,11 @@
 # coding=utf-8
 
-import pytz
-from dateutil import parser
+import datetime
+
+from email.utils import parsedate_tz
 from xml.etree import ElementTree
+
+from dateutil import tz
 
 from podcasts.podcast import Podcast, Episode, Enclosure, Person
 
@@ -108,10 +111,14 @@ def _parse_person(tag):
 
 def _parse_date(txt):
     """This parses an RFC 2822 timestamp, and converts it to a datetime object in utc."""
-    dt = parser.parse(txt)
-    dt = dt.astimezone(pytz.utc)
-    dt = dt.replace(tzinfo=None)
-    return dt
+    datetime_tuple = parsedate_tz(txt)
+    if datetime_tuple[9] == 0:
+        return datetime.datetime(*datetime_tuple[:6])
+
+    tzinfo = tz.tzoffset("nonsense", datetime_tuple[9])
+
+    return datetime.datetime(*datetime_tuple[:6],
+            tzinfo=tzinfo).astimezone(tz.tzoffset("UTC", 0)).replace(tzinfo=None)
 
 
 def _parse_enclosure(element):

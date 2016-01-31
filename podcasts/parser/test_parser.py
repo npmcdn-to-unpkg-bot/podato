@@ -47,6 +47,18 @@ def test_canvas():
     assert episode.image == "http://relayfm.s3.amazonaws.com/uploads/broadcast/image/25/canvas_artwork.png"
 
 
+def test_whats_the_point():
+    """Test with the What's the point feed."""
+    feed = read_test_file("whatsthepoint")
+
+    result = parse_feed(feed)
+
+    assert result.title == "What's The Point"
+    assert result.author == "FiveThirtyEight"
+    # This feed doesn't use UTC, but PST.
+    assert result.episodes[0].published == datetime.datetime(2016, 1, 28, 11, 0, 0)
+
+
 def test_parse_duration():
     assert _parse_duration("1337") == 1337
     assert _parse_duration("22:17") == 1337
