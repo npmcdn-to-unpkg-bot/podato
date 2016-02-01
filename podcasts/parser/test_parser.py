@@ -1,5 +1,6 @@
 # coding=utf-8
 
+import codecs
 import datetime
 import os.path
 from xml.etree.ElementTree import Element
@@ -8,7 +9,7 @@ from parser import parse_feed, _parse_duration, _parse_categories
 
 def read_test_file(filename):
     test_dir = os.path.join(os.path.dirname(__file__), "test_data")
-    return open(os.path.join(test_dir, filename + ".xml")).read()
+    return codecs.open(os.path.join(test_dir, filename + ".xml"), encoding="utf-8").read()
 
 def test_canvas():
     """Test with the well-formatted feed of the Canvas podcast."""
