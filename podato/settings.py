@@ -39,7 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # social login
-    'social.apps.django_app.default'
+    'social.apps.django_app.default',
+
+    'podcasts.apps.PodcastsConfig'
 ]
 
 MIDDLEWARE_CLASSES = [
