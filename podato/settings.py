@@ -27,7 +27,6 @@ DEBUG = bool(int(os.environ.get("DEBUG", "0")))
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -41,7 +40,8 @@ INSTALLED_APPS = [
     # social login
     'social.apps.django_app.default',
 
-    'podcasts.apps.PodcastsConfig'
+    'podcasts.apps.PodcastsConfig',
+    'main.apps.MainConfig',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -53,6 +53,8 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'social.apps.django_app.middleware.SocialAuthExceptionMiddleware'
 ]
 
 ROOT_URLCONF = 'podato.urls'
@@ -68,6 +70,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social.apps.django_app.context_processors.backends',
+                'social.apps.django_app.context_processors.login_redirect',
             ],
         },
     },
@@ -94,6 +98,8 @@ DATABASES = {
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
 
+
+
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -106,9 +112,16 @@ AUTH_PASSWORD_VALIDATORS = [
     },
     {
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
+    }
 ]
 
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'social.backends.google.GoogleOAuth2',
+    'social.backends.twitter.TwitterOAuth',
+    'social.backends.facebook.FacebookOAuth2'
+]
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.9/topics/i18n/
@@ -128,3 +141,87 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+# Email
+
+SENDGRID_API_KEY = os.environ.get("SENDGRID_API_KEY")
+
+# Social Auth:
+
+SOCIAL_AUTH_LOGIN_URL = "/users/login"
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = "/"
+SOCIAL_AUTH_USER_MODEL = 'auth.User'
+
+SOCIAL_AUTH_UUID_LENGTH = 3
+SOCIAL_AUTH_SLUGIFY_USERNAMES = True
+
+SOCIAL_AUTH_REDIRECT_IS_HTTPS = True
+SOCIAL_AUTH_PROTECTED_USER_FIELDS = ["email", "username"]
+SOCIAL_AUTH_PASSWORDLESS = True
+
+SOCIAL_AUTH_STRATEGY = 'social.strategies.django_strategy.DjangoStrategy'
+SOCIAL_AUTH_STORAGE = 'social.apps.django_app.default.models.DjangoStorage'
+SOCIAL_AUTH_FORCE_EMAIL_VALIDATION = True
+SOCIAL_AUTH_EMAIL_VALIDATION_FUNCTION = "main.helpers.send_confirmation_email"
+SOCIAL_AUTH_EMAIL_VALIDATION_URL = "confirmation_email"
+
+SOCIAL_AUTH_FACEBOOK_KEY = os.environ["FACEBOOK_CONSUMER_KEY"]
+SOCIAL_AUTH_FACEBOOK_SECRET = os.environ["FACEBOOK_CONSUMER_SECRET"]
+SOCIAL_AUTH_FACEBOOK_SCOPE = ["public_profile", "email"]
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = os.environ["GOOGLE_CONSUMER_KEY"]
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = os.environ["GOOGLE_CONSUMER_SECRET"]
+SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = ["https://www.googleapis.com/auth/plus.login","https://www.googleapis.com/auth/plus.profile.emails.read"]
+
+SOCIAL_AUTH_TWITTER_KEY = os.environ["TWITTER_CONSUMER_KEY"]
+SOCIAL_AUTH_TWITTER_SECRET = os.environ["TWITTER_CONSUMER_SECRET"]
+
+
+SOCIAL_AUTH_PIPELINE = (
+    # Get the information we can about the user and return it in a simple
+    # format to create the user instance later. On some cases the details are
+    # already part of the auth response from the provider, but sometimes this
+    # could hit a provider API.
+    'social.pipeline.social_auth.social_details',
+
+    # Get the social uid from whichever service we're authing thru. The uid is
+    # the unique identifier of the given user in the provider.
+    'social.pipeline.social_auth.social_uid',
+
+    # Verifies that the current auth process is valid within the current
+    # project, this is were emails and domains whitelists are applied (if
+    # defined).
+    'social.pipeline.social_auth.auth_allowed',
+
+    # Checks if the current social-account is already associated in the site.
+    'social.pipeline.social_auth.social_user',
+
+    # Make up a username for this person, appends a random string at the end if
+    # there's any collision.
+    'social.pipeline.user.get_username',
+
+    #complete any missing profie information
+    'main.helpers.ensure_required_data',
+
+    # Send a validation email to the user to verify its email address.
+    # Disabled by default.
+    'social.pipeline.mail.mail_validation',
+
+    # Associates the current social details with another user account with
+    # a similar email address. Disabled by default.
+    'social.pipeline.social_auth.associate_by_email',
+
+    # Create a user account if we haven't found one yet.
+    'social.pipeline.user.create_user',
+
+    # Create the record that associated the social account with this user.
+    'social.pipeline.social_auth.associate_user',
+
+    # Populate the extra_data field in the social record with the values
+    # specified by settings (and the default ones like access_token, etc).
+    'social.pipeline.social_auth.load_extra_data',
+
+    # Update the user record with any changed info from the auth service.
+    'social.pipeline.user.user_details',
+)

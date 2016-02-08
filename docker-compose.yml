@@ -20,3 +20,5 @@ web:
     POSTGRES_HOST: "db"
     SECRET_KEY: "(mz8cry@72_x0bl3mi$$r*5us2js5@lnv^)e@fw+7l6x@$q8y3"
     DEBUG: "1"
+  env_file:
+    ./local.env
