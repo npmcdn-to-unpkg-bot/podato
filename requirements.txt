@@ -1,6 +1,9 @@
 django==1.9.2
 graphene[django]
 django-graphiql
+django-oauth-toolkit
+django-cors-headers
+django-extensions
 python-social-auth
 requests-oauthlib
 psycopg2

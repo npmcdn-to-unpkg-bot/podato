@@ -25,6 +25,9 @@ SECRET_KEY = os.environ.get("SECRET_KEY", os.urandom(16))
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = bool(int(os.environ.get("DEBUG", "0")))
 
+# Only allow the session cooky to be provided via HTTP
+SESSION_COOKIE_HTTPONLY = True
+
 ALLOWED_HOSTS = []
 
 # Application definition
@@ -37,8 +40,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    # social login
+    # 3rd party
     'social.apps.django_app.default',
+    'oauth2_provider',
+    'corsheaders',
+    'django_extensions',
 
     'podcasts.apps.PodcastsConfig',
     'main.apps.MainConfig',
@@ -54,7 +60,8 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
-    'social.apps.django_app.middleware.SocialAuthExceptionMiddleware'
+    'social.apps.django_app.middleware.SocialAuthExceptionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'podato.urls'
@@ -225,3 +232,20 @@ SOCIAL_AUTH_PIPELINE = (
     # Update the user record with any changed info from the auth service.
     'social.pipeline.user.user_details',
 )
+
+
+CORS_ORIGIN_ALLOW_ALL = True
+
+OAUTH_WEB_APP_ID = os.environ.get("OAUTH_WEB_APP_ID")
+OAUTH_WEB_AP_SECRET = os.environ.get("OAUTH_WEB_APP_SECRET")
+
+OAUTH2_PROVIDER = {
+    'SCOPES': {
+        'default': 'Read your profile information (not password or email address), subscriptions, ...',
+    },
+    'DEFAULT_SCOPES': ['default'],
+
+    'CLIENT_ID_GENERATOR_CLASS': 'oauth2_provider.generators.ClientIdGenerator',
+
+}
+
