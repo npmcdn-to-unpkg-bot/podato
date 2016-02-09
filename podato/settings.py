@@ -66,6 +66,10 @@ MIDDLEWARE_CLASSES = [
 
 ROOT_URLCONF = 'podato.urls'
 
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, "static", "static")
+
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
