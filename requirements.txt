@@ -9,3 +9,4 @@ requests-oauthlib
 psycopg2
 jinja2
 sendgrid
+uwsgi

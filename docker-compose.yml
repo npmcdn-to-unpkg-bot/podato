@@ -6,7 +6,7 @@ db:
     POSTGRES_DB: "podato"
 web:
   build: .
-  command: python manage.py runserver 0.0.0.0:8000
+  command: uwsgi uwsgi.ini
   volumes:
     - .:/code
   ports:
