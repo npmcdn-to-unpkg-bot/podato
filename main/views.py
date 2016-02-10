@@ -23,6 +23,11 @@ def index(request):
         })
     })
 
+
 def email_confirmation_sent(request):
     return render(request, "confirmation_email_sent.html")
+
+
+def oauth_callback(request):
+    return render(request, "oauth_callback.html", {"title": "Redirecting..."})
 

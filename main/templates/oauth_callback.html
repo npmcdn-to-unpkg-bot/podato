@@ -1,0 +1,16 @@
+{% extends "index.html" %}
+{% block scripts %}
+<script>
+    var o = {};
+    var parts = location.hash.substr(1).split("&")
+    for(var i=0; i<parts.length; i++){
+        var pair = parts[i].split("=");
+        o[pair[0]] = pair[1];
+    }
+    localStorage.auth = JSON.stringify({
+        access_token: o.access_token,
+        expires: Date.now() + o.expires_in*1000
+    });
+    window.location = o.state;
+</script>
+{% endblock %}

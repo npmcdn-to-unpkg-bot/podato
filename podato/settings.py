@@ -30,6 +30,8 @@ SESSION_COOKIE_HTTPONLY = True
 
 ALLOWED_HOSTS = []
 
+LOGIN_URL = "/login"
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -50,6 +52,7 @@ INSTALLED_APPS = [
     'main.apps.MainConfig',
 ]
 
+
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -63,6 +66,8 @@ MIDDLEWARE_CLASSES = [
     'social.apps.django_app.middleware.SocialAuthExceptionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
 ]
+
+from social.apps.django_app.middleware import SocialAuthExceptionMiddleware
 
 ROOT_URLCONF = 'podato.urls'
 
@@ -253,3 +258,6 @@ OAUTH2_PROVIDER = {
 
 }
 
+
+
+x
