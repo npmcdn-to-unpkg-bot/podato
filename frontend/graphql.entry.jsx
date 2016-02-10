@@ -1,4 +1,5 @@
 var GraphiQL = require("graphiql");
+var React = require("react");
 var ReactDOM = require("react-dom");
 
 function graphQLFetcher(graphQLParams) {

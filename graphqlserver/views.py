@@ -1,3 +1,4 @@
 from django.shortcuts import render
 
-# Create your views here.
+def graphiql(request):
+    return render(request, "graphiql.html")

@@ -50,6 +50,7 @@ INSTALLED_APPS = [
 
     'podcasts.apps.PodcastsConfig',
     'main.apps.MainConfig',
+    'graphqlserver.apps.GraphqlserverConfig'
 ]
 
 
@@ -257,7 +258,3 @@ OAUTH2_PROVIDER = {
     'CLIENT_ID_GENERATOR_CLASS': 'oauth2_provider.generators.ClientIdGenerator',
 
 }
-
-
-
-x
