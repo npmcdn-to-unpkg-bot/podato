@@ -92,6 +92,11 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
+
+#PyCharm
 .idea
 
+#.env fies contain configuration options that contain sensitive data.
 *.env
+
+node_modules
