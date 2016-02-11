@@ -10,6 +10,8 @@ django-debug-panel
 python-social-auth
 requests-oauthlib
 psycopg2
+psycogreen
 jinja2
 sendgrid
 uwsgi
+gevent
