@@ -8,15 +8,7 @@ class UserNode(DjangoNode):
         model = User
         filter_fields = ['username', 'email']
         filter_order_by = ['username', "id"]
-
-    @classmethod
-    def get_node(cls, id, info=None):
-        raise ValueError("called with id: %s" % id)
-        try:
-            instance = cls._meta.model.objects.get(id=id)
-            return cls(instance)
-        except cls._meta.model.DoesNotExist:
-            return None
+        only_fields = ("username", "email", "is_staff", "date_joined", )
 
 
 class UserQuery(ObjectType):
