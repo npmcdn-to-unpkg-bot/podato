@@ -47,6 +47,10 @@ INSTALLED_APPS = [
     'oauth2_provider',
     'corsheaders',
     'django_extensions',
+    'django_graphiql',
+    'graphene.contrib.django',
+    'debug_toolbar',
+    'debug_panel',
 
     'podcasts.apps.PodcastsConfig',
     'main.apps.MainConfig',
@@ -55,6 +59,7 @@ INSTALLED_APPS = [
 
 
 MIDDLEWARE_CLASSES = [
+    'debug_panel.middleware.DebugPanelMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -67,8 +72,6 @@ MIDDLEWARE_CLASSES = [
     'social.apps.django_app.middleware.SocialAuthExceptionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
 ]
-
-from social.apps.django_app.middleware import SocialAuthExceptionMiddleware
 
 ROOT_URLCONF = 'podato.urls'
 
@@ -152,12 +155,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.9/howto/static-files/
-
-STATIC_URL = '/static/'
 
 
 # Email
@@ -257,4 +254,15 @@ OAUTH2_PROVIDER = {
 
     'CLIENT_ID_GENERATOR_CLASS': 'oauth2_provider.generators.ClientIdGenerator',
 
+}
+
+GRAPHIQL_GRAPHQL_VIEWNAME = "graphql:graphql"
+
+
+
+DEBUG_TOOLBAR_PATCH_SETTINGS = False
+
+
+DEBUG_TOOLBAR_CONFIG = {
+    "SHOW_TOOLBAR_CALLBACK": lambda request: DEBUG
 }

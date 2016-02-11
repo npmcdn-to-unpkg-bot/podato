@@ -8,11 +8,12 @@
 <body>
 {% block content %}
 {% endblock %}
-</body>
 {% block scripts %}
     <script>
         var Podato = Podato || {};
         Podato.globals = {{ global_data|safe }}
     </script>
-    {% endblock %}
-</html>@
+{% endblock %}
+</body>
+
+</html>

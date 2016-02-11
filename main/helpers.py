@@ -52,3 +52,7 @@ def ensure_required_data(backend, strategy, details=None, is_new=True, *args, **
         "form": form,
         "backend_name": backend.name
     })
+
+
+def show_toolbar(request):
+    return settings.DEBUG

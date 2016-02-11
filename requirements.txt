@@ -4,6 +4,9 @@ django-graphiql
 django-oauth-toolkit
 django-cors-headers
 django-extensions
+django-filter
+django-debug-toolbar
+django-debug-panel
 python-social-auth
 requests-oauthlib
 psycopg2
