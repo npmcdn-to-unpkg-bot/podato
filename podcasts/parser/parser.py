@@ -1,19 +1,18 @@
 # coding=utf-8
 
 import datetime
-
 from email.utils import parsedate_tz
 from xml.etree import cElementTree
 
 from dateutil import tz
 
-from podcasts.podcast import Podcast, Episode, Enclosure, Person
+from podcasts.parser.podcast import ParsedPodcast, Episode, Enclosure, Person
 
 ITUNES_NS = "{http://www.itunes.com/dtds/podcast-1.0.dtd}"
 
 def parse_feed(feed_str):
     """Parses a feed, and returns a Podcast instance"""
-    podcast = Podcast()
+    podcast = ParsedPodcast()
     tree = cElementTree.fromstring(feed_str.encode("utf-8"))
     channel = tree[0]
 

@@ -3,6 +3,8 @@ from __future__ import unicode_literals
 from django.db import models
 from django.contrib.auth.models import User
 
+from utils.fields import SeparatedValuesField
+
 class Category(models.Model):
     """Podcast categories"""
     name = models.CharField(max_length=20, primary_key=True)
@@ -20,6 +22,7 @@ class PodcastManager(models.Manager):
 
 
 class Podcast(models.Model):
+    """Represents a podcast"""
     url = models.CharField(max_length=255, primary_key=True)
     link = models.CharField(max_length=255)
     title = models.CharField(max_length=200)
@@ -32,6 +35,7 @@ class Podcast(models.Model):
     tags = models.CharField(max_length=255)
     categories = models.ManyToManyField(Category)
     last_fetched = models.DateTimeField()
+    warnings = SeparatedValuesField()
 
     objects = PodcastManager()
 
@@ -40,6 +44,7 @@ class Podcast(models.Model):
 
 
 class Episode(models.Model):
+    """Represents a podcast episode."""
     podcast = models.ForeignKey(Podcast, null=False)
     title = models.CharField(max_length=255)
     link = models.CharField(max_length=255)
@@ -54,6 +59,7 @@ class Episode(models.Model):
     author = models.CharField(max_length=255)
     image = models.CharField(max_length=255)
     published = models.DateTimeField()
+    warnings = SeparatedValuesField()
 
     def __str__(self):
         return self.title

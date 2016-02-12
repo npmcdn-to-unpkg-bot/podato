@@ -1,9 +1,9 @@
 # coding=utf-8
 """Tests for the  podcasts module."""
-from podcast import Podcast, Episode, Enclosure, Person
-import podcast as podcast_objects
-
 import datetime
+
+from podcasts.parser import podcast as podcast_objects
+from podcasts.parser.podcast import Podcast, Episode, Enclosure, Person
 
 
 def create_valid_podcast():

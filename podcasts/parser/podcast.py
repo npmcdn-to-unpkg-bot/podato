@@ -1,19 +1,41 @@
 #warnings
 import itertools
 
-W_NO_IMAGE = "This podcast has no image."
-W_NO_AUTHOR = "The author is not specified in this podcast feed."
-W_NO_DESCRIPTION = "There's no description for this podcast in the feed"
-W_NO_CATEGORIES = "The feed of this podcast doesn't specify the categor(y/ies) it is in."
-W_NO_EXPLICIT = "This podcast's feed doesn't say whether it contains explicit content or not."
-W_NO_LANGUAGE = "The feed for this podcast does not specify the language."
-W_NO_GUID = "Episode \"%s\" has no GUID."
-W_NO_DURATION = "The duration of the episode \"%s\" is not (correctly) specified in the podcast feed"
-W_NO_EPISODE_AUTHOR = "The episode \"%s\"'s author is not specified in the podcast feed."
-W_DUPLICATE_GUID = "There are multiple episodes in this feed with guid \"%s\"."
+#warning constants
+W_NO_IMAGE = "W_NO_IMAGES"
+W_NO_AUTHOR = "W_NO_AUTHOR"
+W_NO_DESCRIPTION = "W_NO_DESCRIPTION"
+W_NO_CATEGORIES = "W_NO_CATEGORIES"
+W_NO_EXPLICIT = "W_NO_EXPLICIT"
+W_NO_LANGUAGE = "W_NO_LANGUAGE"
+W_NO_GUID = "W_NO_GUID"
+W_NO_DURATION = "W_NO_DURATION"
+W_NO_EPISODE_AUTHOR = "W_NO_EPISODE_AUTHOR"
+W_DUPLICATE_GUID = "W_DUPLICATE_GUID"
+
+def get_warning_message(warning, episode=None):
+    """Get the warning message for e given warning constant. If the warning is about a specific episode, pass it in."""
+    messages = {
+        W_NO_IMAGE: "This podcast has no image.",
+        W_NO_AUTHOR: "The author is not specified in this podcast feed.",
+        W_NO_DESCRIPTION: "There's no description for this podcast in the feed",
+        W_NO_CATEGORIES: "The feed of this podcast doesn't specify the categor(y/ies) it is in.",
+        W_NO_EXPLICIT: "This podcast's feed doesn't say whether it contains explicit content or not.",
+        W_NO_LANGUAGE: "The feed for this podcast does not specify the language.",
+        W_NO_GUID: "Episode \"%s\" has no GUID.",
+        W_NO_DURATION: "The duration of the episode \"%s\" is not (correctly) specified in the podcast feed",
+        W_NO_EPISODE_AUTHOR: "The episode \"%s\"'s author is not specified in the podcast feed.",
+        W_DUPLICATE_GUID: "There are multiple episodes in this feed with guid \"%s\"."
+    }
+
+    if warning in {W_NO_GUID, W_NO_DURATION, W_NO_EPISODE_AUTHOR}:
+        return messages[warning] % episode.title
+    elif warning == W_DUPLICATE_GUID:
+        return messages[warning] % episode.guid
+    return messages[warning]
 
 
-class Podcast(object):
+class ParsedPodcast(object):
     """The podcast class represents a podcast."""
 
     def __init__(self, url=None, link=None, title=None, description=None, author=None, image=None, copyright=None,
@@ -52,12 +74,12 @@ class Podcast(object):
             self.warnings.append(W_NO_LANGUAGE)
 
         for episode in self.episodes:
-            episode.validate(self.warnings)
+            episode.validate()
 
         keyfunc = lambda ep: ep.guid
         for guid, episodes in itertools.groupby(sorted(self.episodes, key=keyfunc), key=keyfunc):
             if len(list(episodes)) > 1:
-                self.warnings.append(W_DUPLICATE_GUID % guid)
+                episodes[0].warnings.append(W_DUPLICATE_GUID)
 
 
 
@@ -78,14 +100,15 @@ class Episode(object):
         self.published = published
         self.explicit = explicit
         self.enclosure = enclosure
+        self.warnings = []
 
-    def validate(self, warnings):
+    def validate(self):
         if not self.guid:
-            warnings.append(W_NO_GUID % self.title)
+            self.warnings.append(W_NO_GUID)
         if not self.duration or self.duration == 0:
-            warnings.append(W_NO_DURATION % self.title)
+            self.warnings.append(W_NO_DURATION)
         if not self.author:
-            warnings.append(W_NO_EPISODE_AUTHOR % self.title)
+            self.warnings.append(W_NO_EPISODE_AUTHOR)
 
         self.guid = self.guid or self.link
 
