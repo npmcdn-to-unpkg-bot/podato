@@ -1,7 +1,7 @@
 from __future__ import unicode_literals
 
 from django.db import models
-
+from django.contrib.auth.models import User
 
 class Category(models.Model):
     """Podcast categories"""
@@ -10,6 +10,13 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
+
+
+
+class PodcastManager(models.Manager):
+    """A custom manager for the Podcast model class, which ensures that it has a subscriber_count field."""
+    def get_queryset(self):
+        return super(PodcastManager, self).get_queryset().annotate(subscriber_count=models.Count("subscriptions"))
 
 
 class Podcast(models.Model):
@@ -25,6 +32,8 @@ class Podcast(models.Model):
     tags = models.CharField(max_length=255)
     categories = models.ManyToManyField(Category)
     last_fetched = models.DateTimeField()
+
+    objects = PodcastManager()
 
     def __str__(self):
         return self.title
@@ -48,6 +57,19 @@ class Episode(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Subscription(models.Model):
+    """A subscription model represents a subscription from a user to a podcast.
+
+    Note that a user may have multiple subscriptions for the same podcast. If a user unsubscribes from a podcast, the
+    subscription isn't deleted, but rather, the unssubscribed field is set. So to get a list of all podcasts the user is
+    currently subscribed to, get all subscriptions whose unsubscribed field is None."""
+
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, blank=False, related_name="subscriptions")
+    podcast = models.OneToOneField(Podcast, related_name="subscriptions")
+    subscribed = models.DateTimeField(auto_now_add=True, help_text="The date on which the user subscribed to this podcast")
+    unsubscribed = models.DateTimeField(help_text="The date on which the user unsubscribed from this podcast.")
 
 
 
