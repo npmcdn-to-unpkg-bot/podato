@@ -2,6 +2,7 @@ from graphene.contrib.django.types import DjangoNode
 from graphene.contrib.django.filter import DjangoFilterConnectionField
 from django.contrib.auth.models import User
 from graphene import relay, ObjectType
+import graphene
 
 class UserNode(DjangoNode):
     class Meta:
@@ -14,6 +15,12 @@ class UserNode(DjangoNode):
 class UserQuery(ObjectType):
     user = relay.NodeField(UserNode)
     all_users = DjangoFilterConnectionField(UserNode)
+
+    me = graphene.Field(UserNode)
+
+    def resolve_me(self, args, info):
+        """Returns the current user."""
+        return info.request_context.user
 
     class Meta:
         abstract = True
