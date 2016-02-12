@@ -1,0 +1,555 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <?xml-stylesheet href="http://sports.espn.go.com/rss/friendlyRSSPodcastv3.xsl"  type="application/xml" media="screen"?>
+    <rss xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+
+    <channel>
+                <atom:link href="http://espn.go.com/espnradio/podcast/feeds/itunes/podCast?id=13131752" rel="self" type="application/rss+xml" />
+                <title>What's The Point</title>
+                <link>http://sports.espn.go.com/espnradio/podcast/index</link>
+                <itunes:author>FiveThirtyEight</itunes:author>
+                <description>A show about our data age. Each week, Jody Avirgan brings you stories and interviews on how data is changing our lives.</description>
+                <itunes:subtitle>A show about our data age. Each week, Jody Avirgan brings you stories and interviews on how data is changing our lives.</itunes:subtitle>
+                <itunes:summary>A show about our data age. Each week, Jody Avirgan brings you stories and interviews on how data is changing our lives.</itunes:summary>
+                <category></category>
+                <language>en-us</language>
+                <copyright>2015</copyright>
+                <itunes:explicit>no</itunes:explicit>
+                <itunes:owner>
+                    <itunes:name>FiveThirtyEight.com</itunes:name>
+                    <itunes:email>joe.mead@espn.com</itunes:email>
+                </itunes:owner>
+
+
+                <image>
+                    <url>http://assets.espn.go.com/i/espnradio/podcast/538_WTP_1400x1400.jpg</url>
+                    <title>What's The Point</title>
+                    <link>http://sports.espn.go.com/espnradio/podcast/index</link>
+                </image>
+
+
+                <itunes:image href="http://assets.espn.go.com/i/espnradio/podcast/538_WTP_1400x1400.jpg" />
+
+                <itunes:category text="Society &#x26; Culture" />
+
+                            <item>
+
+                                <title>.31 Don't Drink The Water: 1/28/16</title>
+                                <link><![CDATA[http://c.espnradio.com/s:J1X3L/audio/2666957/whatsthepoint_2016-01-28-124357.64k.mp3?ad_params=zones%3DPreroll%2CPreroll2%2CMidroll%2CMidroll2%2CMidroll3%2CMidroll4%2CMidroll5%2CMidroll6%2CPostroll%2CPostroll2%7Cstation_id%3D3138]]></link>
+                                <itunes:author>ESPN</itunes:author>
+                                <description>In Flint, Michigan, bad data decisions made the water crisis much worse. FiveThirtyEight's Anna Barry-Jester recently reported on the story.</description>
+                                <itunes:subtitle>In Flint, Michigan, bad data decisions made the water crisis much worse. FiveThirtyEight's Anna Barry-Jester recently reported on the story.</itunes:subtitle>
+                                <itunes:summary>In Flint, Michigan, bad data decisions made the water crisis much worse. FiveThirtyEight's Anna Barry-Jester recently reported on the story.</itunes:summary>
+
+                                <enclosure url="http://c.espnradio.com/s:J1X3L/audio/2666957/whatsthepoint_2016-01-28-124357.64k.mp3?ad_params=zones%3DPreroll%2CPreroll2%2CMidroll%2CMidroll2%2CMidroll3%2CMidroll4%2CMidroll5%2CMidroll6%2CPostroll%2CPostroll2%7Cstation_id%3D3138" length="0" type="audio/mp3" />
+
+
+                                <pubDate><![CDATA[Thu, 28 Jan 2016 03:00:00 PST]]></pubDate>
+
+                                <category><![CDATA[News]]></category>
+                                <!--
+                                <itunes:category text="News">
+                                    <itunes:category text="Sports" />
+                                </itunes:category>
+                                -->
+                                <itunes:explicit><![CDATA[No]]></itunes:explicit>
+                                <itunes:duration><![CDATA[30:36]]></itunes:duration>
+                                <itunes:keywords><![CDATA[null]]></itunes:keywords>
+                                <guid isPermaLink="false">http://sports.espn.go.com/espnradio/podcast?id=14666722</guid>
+                            </item>
+
+                            <item>
+
+                                <title>.30 A History Of Political Data (Part Two): 1/21/16</title>
+                                <link><![CDATA[http://c.espnradio.com/s:J1X3L/audio/2661963/whatsthepoint_2016-01-21-135103.64k.mp3?ad_params=zones%3DPreroll%2CPreroll2%2CMidroll%2CMidroll2%2CMidroll3%2CMidroll4%2CMidroll5%2CMidroll6%2CPostroll%2CPostroll2%7Cstation_id%3D3138]]></link>
+                                <itunes:author>ESPN</itunes:author>
+                                <description>Obama 2008 to the present, including reporting from Iowa. With Daniel Kreiss of UNC.</description>
+                                <itunes:subtitle>Obama 2008 to the present, including reporting from Iowa. With Daniel Kreiss of UNC.</itunes:subtitle>
+                                <itunes:summary>Obama 2008 to the present, including reporting from Iowa. With Daniel Kreiss of UNC.</itunes:summary>
+
+                                <enclosure url="http://c.espnradio.com/s:J1X3L/audio/2661963/whatsthepoint_2016-01-21-135103.64k.mp3?ad_params=zones%3DPreroll%2CPreroll2%2CMidroll%2CMidroll2%2CMidroll3%2CMidroll4%2CMidroll5%2CMidroll6%2CPostroll%2CPostroll2%7Cstation_id%3D3138" length="0" type="audio/mp3" />
+
+
+                                <pubDate><![CDATA[Thu, 21 Jan 2016 03:00:00 PST]]></pubDate>
+
+                                <category><![CDATA[News]]></category>
+                                <!--
+                                <itunes:category text="News">
+                                    <itunes:category text="Sports" />
+                                </itunes:category>
+                                -->
+                                <itunes:explicit><![CDATA[No]]></itunes:explicit>
+                                <itunes:duration><![CDATA[35:30]]></itunes:duration>
+                                <itunes:keywords><![CDATA[null]]></itunes:keywords>
+                                <guid isPermaLink="false">http://sports.espn.go.com/espnradio/podcast?id=14620076</guid>
+                            </item>
+
+                            <item>
+
+                                <title>.29 A History Of Political Data (Part One): 1/14/16</title>
+                                <link><![CDATA[http://c.espnradio.com/s:J1X3L/audio/2657692/whatsthepoint_2016-01-14-131632.64k.mp3?ad_params=zones%3DPreroll%2CPreroll2%2CMidroll%2CMidroll2%2CMidroll3%2CMidroll4%2CMidroll5%2CMidroll6%2CPostroll%2CPostroll2%7Cstation_id%3D3138]]></link>
+                                <itunes:author>ESPN</itunes:author>
+                                <description>William Jennings Bryan to Barack Obama. With Daniel Kreiss of the University of North Carolina.</description>
+                                <itunes:subtitle>William Jennings Bryan to Barack Obama. With Daniel Kreiss of the University of North Carolina.</itunes:subtitle>
+                                <itunes:summary>William Jennings Bryan to Barack Obama. With Daniel Kreiss of the University of North Carolina.</itunes:summary>
+
+                                <enclosure url="http://c.espnradio.com/s:J1X3L/audio/2657692/whatsthepoint_2016-01-14-131632.64k.mp3?ad_params=zones%3DPreroll%2CPreroll2%2CMidroll%2CMidroll2%2CMidroll3%2CMidroll4%2CMidroll5%2CMidroll6%2CPostroll%2CPostroll2%7Cstation_id%3D3138" length="0" type="audio/mp3" />
+
+
+                                <pubDate><![CDATA[Thu, 14 Jan 2016 03:00:00 PST]]></pubDate>
+
+                                <category><![CDATA[News]]></category>
+                                <!--
+                                <itunes:category text="News">
+                                    <itunes:category text="Sports" />
+                                </itunes:category>
+                                -->
+                                <itunes:explicit><![CDATA[No]]></itunes:explicit>
+                                <itunes:duration><![CDATA[43:47]]></itunes:duration>
+                                <itunes:keywords><![CDATA[null]]></itunes:keywords>
+                                <guid isPermaLink="false">http://sports.espn.go.com/espnradio/podcast?id=14569729</guid>
+                            </item>
+
+                            <item>
+
+                                <title>BONUS: Elections Pilot (Iowa!): 1/13/16</title>
+                                <link><![CDATA[http://c.espnradio.com/s:J1X3L/audio/2656968/whatsthepoint_2016-01-13-140708.64k.mp3?ad_params=zones%3DPreroll%2CPreroll2%2CMidroll%2CMidroll2%2CMidroll3%2CMidroll4%2CMidroll5%2CMidroll6%2CPostroll%2CPostroll2%7Cstation_id%3D3138]]></link>
+                                <itunes:author>ESPN</itunes:author>
+                                <description>From a Des Moines hotel room, we talk about the Iowa caucus and the latest polling numbers. Let us know what you think by emailing podcasts@fivethirtyeight.com</description>
+                                <itunes:subtitle>From a Des Moines hotel room, we talk about the Iowa caucus and the latest polling numbers. Let us know what you think by emailing podcasts@fivethirtyeight.com</itunes:subtitle>
+                                <itunes:summary>From a Des Moines hotel room, we talk about the Iowa caucus and the latest polling numbers. Let us know what you think by emailing podcasts@fivethirtyeight.com</itunes:summary>
+
+                                <enclosure url="http://c.espnradio.com/s:J1X3L/audio/2656968/whatsthepoint_2016-01-13-140708.64k.mp3?ad_params=zones%3DPreroll%2CPreroll2%2CMidroll%2CMidroll2%2CMidroll3%2CMidroll4%2CMidroll5%2CMidroll6%2CPostroll%2CPostroll2%7Cstation_id%3D3138" length="0" type="audio/mp3" />
+
+
+                                <pubDate><![CDATA[Wed, 13 Jan 2016 03:00:00 PST]]></pubDate>
+
+                                <category><![CDATA[News]]></category>
+                                <!--
+                                <itunes:category text="News">
+                                    <itunes:category text="Sports" />
+                                </itunes:category>
+                                -->
+                                <itunes:explicit><![CDATA[No]]></itunes:explicit>
+                                <itunes:duration><![CDATA[35:47]]></itunes:duration>
+                                <itunes:keywords><![CDATA[null]]></itunes:keywords>
+                                <guid isPermaLink="false">http://sports.espn.go.com/espnradio/podcast?id=14562759</guid>
+                            </item>
+
+                            <item>
+
+                                <title>.28 Algorithmic Arugula: 1/7/16</title>
+                                <link><![CDATA[http://c.espnradio.com/s:J1X3L/audio/2653255/whatsthepoint_2016-01-07-150855.64k.mp3?ad_params=zones%3DPreroll%2CPreroll2%2CMidroll%2CMidroll2%2CMidroll3%2CMidroll4%2CMidroll5%2CMidroll6%2CPostroll%2CPostroll2%7Cstation_id%3D3138]]></link>
+                                <itunes:author>ESPN</itunes:author>
+                                <description>A visit to a data-driven farm, where the light, water, nutrients and more are all optimized and controlled from an iPad.</description>
+                                <itunes:subtitle>A visit to a data-driven farm, where the light, water, nutrients and more are all optimized and controlled from an iPad.</itunes:subtitle>
+                                <itunes:summary>A visit to a data-driven farm, where the light, water, nutrients and more are all optimized and controlled from an iPad.</itunes:summary>
+
+                                <enclosure url="http://c.espnradio.com/s:J1X3L/audio/2653255/whatsthepoint_2016-01-07-150855.64k.mp3?ad_params=zones%3DPreroll%2CPreroll2%2CMidroll%2CMidroll2%2CMidroll3%2CMidroll4%2CMidroll5%2CMidroll6%2CPostroll%2CPostroll2%7Cstation_id%3D3138" length="0" type="audio/mp3" />
+
+
+                                <pubDate><![CDATA[Thu, 7 Jan 2016 03:00:00 PST]]></pubDate>
+
+                                <category><![CDATA[News]]></category>
+                                <!--
+                                <itunes:category text="News">
+                                    <itunes:category text="Sports" />
+                                </itunes:category>
+                                -->
+                                <itunes:explicit><![CDATA[No]]></itunes:explicit>
+                                <itunes:duration><![CDATA[29:11]]></itunes:duration>
+                                <itunes:keywords><![CDATA[null]]></itunes:keywords>
+                                <guid isPermaLink="false">http://sports.espn.go.com/espnradio/podcast?id=14522819</guid>
+                            </item>
+
+                            <item>
+
+                                <title>BONUS: Election Podcast Pilot: 1/4/16</title>
+                                <link><![CDATA[http://c.espnradio.com/s:J1X3L/audio/2651331/whatsthepoint_2016-01-04-212931.64k.mp3?ad_params=zones%3DPreroll%2CPreroll2%2CMidroll%2CMidroll2%2CMidroll3%2CMidroll4%2CMidroll5%2CMidroll6%2CPostroll%2CPostroll2%7Cstation_id%3D3138]]></link>
+                                <itunes:author>ESPN</itunes:author>
+                                <description>Let us know what you think of our elections podcast as we continue to pilot. We'll launch the show formally in a new feed before the Iowa caucus.</description>
+                                <itunes:subtitle>Let us know what you think of our elections podcast as we continue to pilot. We'll launch the show formally in a new feed before the Iowa caucus.</itunes:subtitle>
+                                <itunes:summary>Let us know what you think of our elections podcast as we continue to pilot. We'll launch the show formally in a new feed before the Iowa caucus.</itunes:summary>
+
+                                <enclosure url="http://c.espnradio.com/s:J1X3L/audio/2651331/whatsthepoint_2016-01-04-212931.64k.mp3?ad_params=zones%3DPreroll%2CPreroll2%2CMidroll%2CMidroll2%2CMidroll3%2CMidroll4%2CMidroll5%2CMidroll6%2CPostroll%2CPostroll2%7Cstation_id%3D3138" length="0" type="audio/mp3" />
+
+
+                                <pubDate><![CDATA[Mon, 4 Jan 2016 03:00:00 PST]]></pubDate>
+
+                                <category><![CDATA[News]]></category>
+                                <!--
+                                <itunes:category text="News">
+                                    <itunes:category text="Sports" />
+                                </itunes:category>
+                                -->
+                                <itunes:explicit><![CDATA[No]]></itunes:explicit>
+                                <itunes:duration><![CDATA[33:20]]></itunes:duration>
+                                <itunes:keywords><![CDATA[null]]></itunes:keywords>
+                                <guid isPermaLink="false">http://sports.espn.go.com/espnradio/podcast?id=14505207</guid>
+                            </item>
+
+                            <item>
+
+                                <title>.27 The 2015 Data Awards (Part 2): 12/24/15</title>
+                                <link><![CDATA[http://c.espnradio.com/s:J1X3L/audio/2646327/whatsthepoint_2015-12-24-094427.64k.mp3?ad_params=zones%3DPreroll%2CPreroll2%2CMidroll%2CMidroll2%2CMidroll3%2CMidroll4%2CMidroll5%2CMidroll6%2CPostroll%2CPostroll2%7Cstation_id%3D3138]]></link>
+                                <itunes:author>ESPN</itunes:author>
+                                <description>More of the most interesting stories and people of the year. Be sure to check out the special site fivethirtyeight.com/dataawards. We'll be back with new shows in 2016!</description>
+                                <itunes:subtitle>More of the most interesting stories and people of the year. Be sure to check out the special site fivethirtyeight.com/dataawards. We'll be back with new shows in 2016!</itunes:subtitle>
+                                <itunes:summary>More of the most interesting stories and people of the year. Be sure to check out the special site fivethirtyeight.com/dataawards. We'll be back with new shows in 2016!</itunes:summary>
+
+                                <enclosure url="http://c.espnradio.com/s:J1X3L/audio/2646327/whatsthepoint_2015-12-24-094427.64k.mp3?ad_params=zones%3DPreroll%2CPreroll2%2CMidroll%2CMidroll2%2CMidroll3%2CMidroll4%2CMidroll5%2CMidroll6%2CPostroll%2CPostroll2%7Cstation_id%3D3138" length="0" type="audio/mp3" />
+
+
+                                <pubDate><![CDATA[Thu, 24 Dec 2015 03:00:00 PST]]></pubDate>
+
+                                <category><![CDATA[News]]></category>
+                                <!--
+                                <itunes:category text="News">
+                                    <itunes:category text="Sports" />
+                                </itunes:category>
+                                -->
+                                <itunes:explicit><![CDATA[No]]></itunes:explicit>
+                                <itunes:duration><![CDATA[33:40]]></itunes:duration>
+                                <itunes:keywords><![CDATA[null]]></itunes:keywords>
+                                <guid isPermaLink="false">http://sports.espn.go.com/espnradio/podcast?id=14432684</guid>
+                            </item>
+
+                            <item>
+
+                                <title>BONUS: Election Podcast Pilot: 12/22/15</title>
+                                <link><![CDATA[http://c.espnradio.com/s:J1X3L/audio/2644974/whatsthepoint_2015-12-22-081014.64k.mp3?ad_params=zones%3DPreroll%2CPreroll2%2CMidroll%2CMidroll2%2CMidroll3%2CMidroll4%2CMidroll5%2CMidroll6%2CPostroll%2CPostroll2%7Cstation_id%3D3138]]></link>
+                                <itunes:author>ESPN</itunes:author>
+                                <description>538 is launching a proper election pod in January. For now, we're piloting with Nate Silver, Clare Malone, Harry Enten and Jody Avirgan. Let us know what you think.</description>
+                                <itunes:subtitle>538 is launching a proper election pod in January. For now, we're piloting with Nate Silver, Clare Malone, Harry Enten and Jody Avirgan. Let us know what you think.</itunes:subtitle>
+                                <itunes:summary>538 is launching a proper election pod in January. For now, we're piloting with Nate Silver, Clare Malone, Harry Enten and Jody Avirgan. Let us know what you think.</itunes:summary>
+
+                                <enclosure url="http://c.espnradio.com/s:J1X3L/audio/2644974/whatsthepoint_2015-12-22-081014.64k.mp3?ad_params=zones%3DPreroll%2CPreroll2%2CMidroll%2CMidroll2%2CMidroll3%2CMidroll4%2CMidroll5%2CMidroll6%2CPostroll%2CPostroll2%7Cstation_id%3D3138" length="0" type="audio/mp3" />
+
+
+                                <pubDate><![CDATA[Tue, 22 Dec 2015 03:00:00 PST]]></pubDate>
+
+                                <category><![CDATA[News]]></category>
+                                <!--
+                                <itunes:category text="News">
+                                    <itunes:category text="Sports" />
+                                </itunes:category>
+                                -->
+                                <itunes:explicit><![CDATA[No]]></itunes:explicit>
+                                <itunes:duration><![CDATA[30:15]]></itunes:duration>
+                                <itunes:keywords><![CDATA[null]]></itunes:keywords>
+                                <guid isPermaLink="false">http://sports.espn.go.com/espnradio/podcast?id=14420495</guid>
+                            </item>
+
+                            <item>
+
+                                <title>.26 The 2015 Data Awards (Part 1): 12/17/15</title>
+                                <link><![CDATA[http://c.espnradio.com/s:J1X3L/audio/2638604/whatsthepoint_2015-12-17-160804.64k.mp3?ad_params=zones%3DPreroll%2CPreroll2%2CMidroll%2CMidroll2%2CMidroll3%2CMidroll4%2CMidroll5%2CMidroll6%2CPostroll%2CPostroll2%7Cstation_id%3D3138]]></link>
+                                <itunes:author>ESPN</itunes:author>
+                                <description>A very special evening, brought to you by FiveThirtyEight.</description>
+                                <itunes:subtitle>A very special evening, brought to you by FiveThirtyEight.</itunes:subtitle>
+                                <itunes:summary>A very special evening, brought to you by FiveThirtyEight.</itunes:summary>
+
+                                <enclosure url="http://c.espnradio.com/s:J1X3L/audio/2638604/whatsthepoint_2015-12-17-160804.64k.mp3?ad_params=zones%3DPreroll%2CPreroll2%2CMidroll%2CMidroll2%2CMidroll3%2CMidroll4%2CMidroll5%2CMidroll6%2CPostroll%2CPostroll2%7Cstation_id%3D3138" length="0" type="audio/mp3" />
+
+
+                                <pubDate><![CDATA[Thu, 17 Dec 2015 03:00:00 PST]]></pubDate>
+
+                                <category><![CDATA[News]]></category>
+                                <!--
+                                <itunes:category text="News">
+                                    <itunes:category text="Sports" />
+                                </itunes:category>
+                                -->
+                                <itunes:explicit><![CDATA[No]]></itunes:explicit>
+                                <itunes:duration><![CDATA[32:34]]></itunes:duration>
+                                <itunes:keywords><![CDATA[null]]></itunes:keywords>
+                                <guid isPermaLink="false">http://sports.espn.go.com/espnradio/podcast?id=14390302</guid>
+                            </item>
+
+                            <item>
+
+                                <title>BONUS: Election Podcast Pilot: 12/15/15</title>
+                                <link><![CDATA[http://c.espnradio.com/s:J1X3L/audio/2632960/whatsthepoint_2015-12-15-110700.64k.mp3?ad_params=zones%3DPreroll%2CPreroll2%2CMidroll%2CMidroll2%2CMidroll3%2CMidroll4%2CMidroll5%2CMidroll6%2CPostroll%2CPostroll2%7Cstation_id%3D3138]]></link>
+                                <itunes:author>ESPN</itunes:author>
+                                <description>538 is launching an election podcast in January! We're piloting now with Nate Silver, Harry Enten, Clare Malone, and Jody Avirgan. Take a listen, let us know what you think.</description>
+                                <itunes:subtitle>538 is launching an election podcast in January! We're piloting now with Nate Silver, Harry Enten, Clare Malone, and Jody Avirgan. Take a listen, let us know what you think.</itunes:subtitle>
+                                <itunes:summary>538 is launching an election podcast in January! We're piloting now with Nate Silver, Harry Enten, Clare Malone, and Jody Avirgan. Take a listen, let us know what you think.</itunes:summary>
+
+                                <enclosure url="http://c.espnradio.com/s:J1X3L/audio/2632960/whatsthepoint_2015-12-15-110700.64k.mp3?ad_params=zones%3DPreroll%2CPreroll2%2CMidroll%2CMidroll2%2CMidroll3%2CMidroll4%2CMidroll5%2CMidroll6%2CPostroll%2CPostroll2%7Cstation_id%3D3138" length="0" type="audio/mp3" />
+
+
+                                <pubDate><![CDATA[Tue, 15 Dec 2015 03:00:00 PST]]></pubDate>
+
+                                <category><![CDATA[News]]></category>
+                                <!--
+                                <itunes:category text="News">
+                                    <itunes:category text="Sports" />
+                                </itunes:category>
+                                -->
+                                <itunes:explicit><![CDATA[No]]></itunes:explicit>
+                                <itunes:duration><![CDATA[30:39]]></itunes:duration>
+                                <itunes:keywords><![CDATA[null]]></itunes:keywords>
+                                <guid isPermaLink="false">http://sports.espn.go.com/espnradio/podcast?id=14372307</guid>
+                            </item>
+
+                            <item>
+
+                                <title>.25 The Dark Side Of Forensic DNA: 12/10/15</title>
+                                <link><![CDATA[http://c.espnradio.com/s:J1X3L/audio/2630327/whatsthepoint_2015-12-10-125427.64k.mp3?ad_params=zones%3DPreroll%2CPreroll2%2CMidroll%2CMidroll2%2CMidroll3%2CMidroll4%2CMidroll5%2CMidroll6%2CPostroll%2CPostroll2%7Cstation_id%3D3138]]></link>
+                                <itunes:author>ESPN</itunes:author>
+                                <description>Forensic evidence has the promise of leading to science-based convictions. But for it to be reliable we need a better understanding of data and statistics, says Erin Murphy.</description>
+                                <itunes:subtitle>Forensic evidence has the promise of leading to science-based convictions. But for it to be reliable we need a better understanding of data and statistics, says Erin Murphy.</itunes:subtitle>
+                                <itunes:summary>Forensic evidence has the promise of leading to science-based convictions. But for it to be reliable we need a better understanding of data and statistics, says Erin Murphy.</itunes:summary>
+
+                                <enclosure url="http://c.espnradio.com/s:J1X3L/audio/2630327/whatsthepoint_2015-12-10-125427.64k.mp3?ad_params=zones%3DPreroll%2CPreroll2%2CMidroll%2CMidroll2%2CMidroll3%2CMidroll4%2CMidroll5%2CMidroll6%2CPostroll%2CPostroll2%7Cstation_id%3D3138" length="0" type="audio/mp3" />
+
+
+                                <pubDate><![CDATA[Thu, 10 Dec 2015 03:00:00 PST]]></pubDate>
+
+                                <category><![CDATA[News]]></category>
+                                <!--
+                                <itunes:category text="News">
+                                    <itunes:category text="Sports" />
+                                </itunes:category>
+                                -->
+                                <itunes:explicit><![CDATA[No]]></itunes:explicit>
+                                <itunes:duration><![CDATA[39:16]]></itunes:duration>
+                                <itunes:keywords><![CDATA[null]]></itunes:keywords>
+                                <guid isPermaLink="false">http://sports.espn.go.com/espnradio/podcast?id=14336231</guid>
+                            </item>
+
+                            <item>
+
+                                <title>.24 Building Pixar's Landscapes: 12/3/15</title>
+                                <link><![CDATA[http://c.espnradio.com/s:J1X3L/audio/2625699/whatsthepoint_2015-12-03-162139.64k.mp3?ad_params=zones%3DPreroll%2CPreroll2%2CMidroll%2CMidroll2%2CMidroll3%2CMidroll4%2CMidroll5%2CMidroll6%2CPostroll%2CPostroll2%7Cstation_id%3D3138]]></link>
+                                <itunes:author>ESPN</itunes:author>
+                                <description>The Good Dinosaur features vast, hyperrealistic landscapes -- powered by terabytes and terabytes of US Geological Survey data.</description>
+                                <itunes:subtitle>The Good Dinosaur features vast, hyperrealistic landscapes -- powered by terabytes and terabytes of US Geological Survey data.</itunes:subtitle>
+                                <itunes:summary>The Good Dinosaur features vast, hyperrealistic landscapes -- powered by terabytes and terabytes of US Geological Survey data.</itunes:summary>
+
+                                <enclosure url="http://c.espnradio.com/s:J1X3L/audio/2625699/whatsthepoint_2015-12-03-162139.64k.mp3?ad_params=zones%3DPreroll%2CPreroll2%2CMidroll%2CMidroll2%2CMidroll3%2CMidroll4%2CMidroll5%2CMidroll6%2CPostroll%2CPostroll2%7Cstation_id%3D3138" length="0" type="audio/mp3" />
+
+
+                                <pubDate><![CDATA[Thu, 3 Dec 2015 03:00:00 PST]]></pubDate>
+
+                                <category><![CDATA[News]]></category>
+                                <!--
+                                <itunes:category text="News">
+                                    <itunes:category text="Sports" />
+                                </itunes:category>
+                                -->
+                                <itunes:explicit><![CDATA[No]]></itunes:explicit>
+                                <itunes:duration><![CDATA[28:35]]></itunes:duration>
+                                <itunes:keywords><![CDATA[null]]></itunes:keywords>
+                                <guid isPermaLink="false">http://sports.espn.go.com/espnradio/podcast?id=14283831</guid>
+                            </item>
+
+                            <item>
+
+                                <title>.23 A WTP Compendium: 11/25/15</title>
+                                <link><![CDATA[http://c.espnradio.com/s:J1X3L/audio/2620922/whatsthepoint_2015-11-25-094022.64k.mp3?ad_params=zones%3DPreroll%2CPreroll2%2CMidroll%2CMidroll2%2CMidroll3%2CMidroll4%2CMidroll5%2CMidroll6%2CPostroll%2CPostroll2%7Cstation_id%3D3138]]></link>
+                                <itunes:author>ESPN</itunes:author>
+                                <description>For your holiday travels, excerpts of our favorite conversations: Neil deGrasse Tyson - (15:50) Farai Chideya - (25:40) Bike Lanes - (37:30) Police Violence - (54:10) Drones</description>
+                                <itunes:subtitle>For your holiday travels, excerpts of our favorite conversations: Neil deGrasse Tyson - (15:50) Farai Chideya - (25:40) Bike Lanes - (37:30) Police Violence - (54:10) Drones</itunes:subtitle>
+                                <itunes:summary>For your holiday travels, excerpts of our favorite conversations: Neil deGrasse Tyson - (15:50) Farai Chideya - (25:40) Bike Lanes - (37:30) Police Violence - (54:10) Drones</itunes:summary>
+
+                                <enclosure url="http://c.espnradio.com/s:J1X3L/audio/2620922/whatsthepoint_2015-11-25-094022.64k.mp3?ad_params=zones%3DPreroll%2CPreroll2%2CMidroll%2CMidroll2%2CMidroll3%2CMidroll4%2CMidroll5%2CMidroll6%2CPostroll%2CPostroll2%7Cstation_id%3D3138" length="0" type="audio/mp3" />
+
+
+                                <pubDate><![CDATA[Wed, 25 Nov 2015 03:00:00 PST]]></pubDate>
+
+                                <category><![CDATA[News]]></category>
+                                <!--
+                                <itunes:category text="News">
+                                    <itunes:category text="Sports" />
+                                </itunes:category>
+                                -->
+                                <itunes:explicit><![CDATA[No]]></itunes:explicit>
+                                <itunes:duration><![CDATA[1:10:40]]></itunes:duration>
+                                <itunes:keywords><![CDATA[null]]></itunes:keywords>
+                                <guid isPermaLink="false">http://sports.espn.go.com/espnradio/podcast?id=14219913</guid>
+                            </item>
+
+                            <item>
+
+                                <title>.22 God, In One Chart: 11/19/15</title>
+                                <link><![CDATA[http://c.espnradio.com/s:J1X3L/audio/2617544/whatsthepoint_2015-11-19-142144.64k.mp3?ad_params=zones%3DPreroll%2CPreroll2%2CMidroll%2CMidroll2%2CMidroll3%2CMidroll4%2CMidroll5%2CMidroll6%2CPostroll%2CPostroll2%7Cstation_id%3D3138]]></link>
+                                <itunes:author>ESPN</itunes:author>
+                                <description>Religion is personal, nuanced, evolving -- which makes it particularly resistant to easy quantification. Emma Green (Atlantic) and Leah Libresco (538) discuss stats and faith.</description>
+                                <itunes:subtitle>Religion is personal, nuanced, evolving -- which makes it particularly resistant to easy quantification. Emma Green (Atlantic) and Leah Libresco (538) discuss stats and faith.</itunes:subtitle>
+                                <itunes:summary>Religion is personal, nuanced, evolving -- which makes it particularly resistant to easy quantification. Emma Green (Atlantic) and Leah Libresco (538) discuss stats and faith.</itunes:summary>
+
+                                <enclosure url="http://c.espnradio.com/s:J1X3L/audio/2617544/whatsthepoint_2015-11-19-142144.64k.mp3?ad_params=zones%3DPreroll%2CPreroll2%2CMidroll%2CMidroll2%2CMidroll3%2CMidroll4%2CMidroll5%2CMidroll6%2CPostroll%2CPostroll2%7Cstation_id%3D3138" length="0" type="audio/mp3" />
+
+
+                                <pubDate><![CDATA[Thu, 19 Nov 2015 03:00:00 PST]]></pubDate>
+
+                                <category><![CDATA[News]]></category>
+                                <!--
+                                <itunes:category text="News">
+                                    <itunes:category text="Sports" />
+                                </itunes:category>
+                                -->
+                                <itunes:explicit><![CDATA[No]]></itunes:explicit>
+                                <itunes:duration><![CDATA[34:38]]></itunes:duration>
+                                <itunes:keywords><![CDATA[null]]></itunes:keywords>
+                                <guid isPermaLink="false">http://sports.espn.go.com/espnradio/podcast?id=14170633</guid>
+                            </item>
+
+                            <item>
+
+                                <title>.21 Rejoice! The Canadian Longform Census Is Back: 11/12/15</title>
+                                <link><![CDATA[http://c.espnradio.com/s:J1X3L/audio/2613032/whatsthepoint_2015-11-12-143232.64k.mp3?ad_params=zones%3DPreroll%2CPreroll2%2CMidroll%2CMidroll2%2CMidroll3%2CMidroll4%2CMidroll5%2CMidroll6%2CPostroll%2CPostroll2%7Cstation_id%3D3138]]></link>
+                                <itunes:author>ESPN</itunes:author>
+                                <description>Turns out, the Canadian census was a pretty big flashpoint in the recent elections, and the fight over it tells us a lot about why government data matters.</description>
+                                <itunes:subtitle>Turns out, the Canadian census was a pretty big flashpoint in the recent elections, and the fight over it tells us a lot about why government data matters.</itunes:subtitle>
+                                <itunes:summary>Turns out, the Canadian census was a pretty big flashpoint in the recent elections, and the fight over it tells us a lot about why government data matters.</itunes:summary>
+
+                                <enclosure url="http://c.espnradio.com/s:J1X3L/audio/2613032/whatsthepoint_2015-11-12-143232.64k.mp3?ad_params=zones%3DPreroll%2CPreroll2%2CMidroll%2CMidroll2%2CMidroll3%2CMidroll4%2CMidroll5%2CMidroll6%2CPostroll%2CPostroll2%7Cstation_id%3D3138" length="0" type="audio/mp3" />
+
+
+                                <pubDate><![CDATA[Thu, 12 Nov 2015 03:00:00 PST]]></pubDate>
+
+                                <category><![CDATA[News]]></category>
+                                <!--
+                                <itunes:category text="News">
+                                    <itunes:category text="Sports" />
+                                </itunes:category>
+                                -->
+                                <itunes:explicit><![CDATA[No]]></itunes:explicit>
+                                <itunes:duration><![CDATA[37:00]]></itunes:duration>
+                                <itunes:keywords><![CDATA[null]]></itunes:keywords>
+                                <guid isPermaLink="false">http://sports.espn.go.com/espnradio/podcast?id=14113647</guid>
+                            </item>
+
+                            <item>
+
+                                <title>.20 Fighting Outbreaks With New Tech (And Paper): 11/5/15</title>
+                                <link><![CDATA[http://c.espnradio.com/s:J1X3L/audio/2609139/whatsthepoint_2015-11-05-181439.64k.mp3?ad_params=zones%3DPreroll%2CPreroll2%2CMidroll%2CMidroll2%2CMidroll3%2CMidroll4%2CMidroll5%2CMidroll6%2CPostroll%2CPostroll2%7Cstation_id%3D3138]]></link>
+                                <itunes:author>ESPN</itunes:author>
+                                <description>In a country like Niger, Doctors Without Borders epidemiologists use a combination of advanced technology and old-fashioned paperwork.</description>
+                                <itunes:subtitle>In a country like Niger, Doctors Without Borders epidemiologists use a combination of advanced technology and old-fashioned paperwork.</itunes:subtitle>
+                                <itunes:summary>In a country like Niger, Doctors Without Borders epidemiologists use a combination of advanced technology and old-fashioned paperwork.</itunes:summary>
+
+                                <enclosure url="http://c.espnradio.com/s:J1X3L/audio/2609139/whatsthepoint_2015-11-05-181439.64k.mp3?ad_params=zones%3DPreroll%2CPreroll2%2CMidroll%2CMidroll2%2CMidroll3%2CMidroll4%2CMidroll5%2CMidroll6%2CPostroll%2CPostroll2%7Cstation_id%3D3138" length="0" type="audio/mp3" />
+
+
+                                <pubDate><![CDATA[Thu, 5 Nov 2015 03:00:00 PST]]></pubDate>
+
+                                <category><![CDATA[News]]></category>
+                                <!--
+                                <itunes:category text="News">
+                                    <itunes:category text="Sports" />
+                                </itunes:category>
+                                -->
+                                <itunes:explicit><![CDATA[No]]></itunes:explicit>
+                                <itunes:duration><![CDATA[31:40]]></itunes:duration>
+                                <itunes:keywords><![CDATA[null]]></itunes:keywords>
+                                <guid isPermaLink="false">http://sports.espn.go.com/espnradio/podcast?id=14060138</guid>
+                            </item>
+
+                            <item>
+
+                                <title>.19 Why The Bronx Burned: 10/29/15</title>
+                                <link><![CDATA[http://c.espnradio.com/s:J1X3L/audio/2604377/whatsthepoint_2015-10-29-153117.64k.mp3?ad_params=zones%3DPreroll%2CPreroll2%2CMidroll%2CMidroll2%2CMidroll3%2CMidroll4%2CMidroll5%2CMidroll6%2CPostroll%2CPostroll2%7Cstation_id%3D3138]]></link>
+                                <itunes:author>ESPN</itunes:author>
+                                <description>In 1970's NYC, huge swaths of the city were engulfed in flames. Bad stats may have been to blame. Joe Flood, author of "The Fires," tells the story.</description>
+                                <itunes:subtitle>In 1970's NYC, huge swaths of the city were engulfed in flames. Bad stats may have been to blame. Joe Flood, author of "The Fires," tells the story.</itunes:subtitle>
+                                <itunes:summary>In 1970's NYC, huge swaths of the city were engulfed in flames. Bad stats may have been to blame. Joe Flood, author of "The Fires," tells the story.</itunes:summary>
+
+                                <enclosure url="http://c.espnradio.com/s:J1X3L/audio/2604377/whatsthepoint_2015-10-29-153117.64k.mp3?ad_params=zones%3DPreroll%2CPreroll2%2CMidroll%2CMidroll2%2CMidroll3%2CMidroll4%2CMidroll5%2CMidroll6%2CPostroll%2CPostroll2%7Cstation_id%3D3138" length="0" type="audio/mp3" />
+
+
+                                <pubDate><![CDATA[Thu, 29 Oct 2015 03:00:00 PDT]]></pubDate>
+
+                                <category><![CDATA[News]]></category>
+                                <!--
+                                <itunes:category text="News">
+                                    <itunes:category text="Sports" />
+                                </itunes:category>
+                                -->
+                                <itunes:explicit><![CDATA[No]]></itunes:explicit>
+                                <itunes:duration><![CDATA[44:58]]></itunes:duration>
+                                <itunes:keywords><![CDATA[null]]></itunes:keywords>
+                                <guid isPermaLink="false">http://sports.espn.go.com/espnradio/podcast?id=14003146</guid>
+                            </item>
+
+                            <item>
+
+                                <title>.18 That's Just, Like, Your Opinion, Man: 10/22/15</title>
+                                <link><![CDATA[http://c.espnradio.com/s:J1X3L/audio/2600169/whatsthepoint_2015-10-22-162109.64k.mp3?ad_params=zones%3DPreroll%2CPreroll2%2CMidroll%2CMidroll2%2CMidroll3%2CMidroll4%2CMidroll5%2CMidroll6%2CPostroll%2CPostroll2%7Cstation_id%3D3138]]></link>
+                                <itunes:author>ESPN</itunes:author>
+                                <description>Walt Hickey recently discovered that Fandango's movie ratings are weirdly inflated. What he learned says a lot about trust online and the wisdom of the crowd.</description>
+                                <itunes:subtitle>Walt Hickey recently discovered that Fandango's movie ratings are weirdly inflated. What he learned says a lot about trust online and the wisdom of the crowd.</itunes:subtitle>
+                                <itunes:summary>Walt Hickey recently discovered that Fandango's movie ratings are weirdly inflated. What he learned says a lot about trust online and the wisdom of the crowd.</itunes:summary>
+
+                                <enclosure url="http://c.espnradio.com/s:J1X3L/audio/2600169/whatsthepoint_2015-10-22-162109.64k.mp3?ad_params=zones%3DPreroll%2CPreroll2%2CMidroll%2CMidroll2%2CMidroll3%2CMidroll4%2CMidroll5%2CMidroll6%2CPostroll%2CPostroll2%7Cstation_id%3D3138" length="0" type="audio/mp3" />
+
+
+                                <pubDate><![CDATA[Thu, 22 Oct 2015 03:00:00 PDT]]></pubDate>
+
+                                <category><![CDATA[News]]></category>
+                                <!--
+                                <itunes:category text="News">
+                                    <itunes:category text="Sports" />
+                                </itunes:category>
+                                -->
+                                <itunes:explicit><![CDATA[No]]></itunes:explicit>
+                                <itunes:duration><![CDATA[35:57]]></itunes:duration>
+                                <itunes:keywords><![CDATA[null]]></itunes:keywords>
+                                <guid isPermaLink="false">http://sports.espn.go.com/espnradio/podcast?id=13948688</guid>
+                            </item>
+
+                            <item>
+
+                                <title>.17 Little Bird, Big Data: 10/16/15</title>
+                                <link><![CDATA[http://c.espnradio.com/s:J1X3L/audio/2591293/whatsthepoint_2015-10-16-141833.64k.mp3?ad_params=zones%3DPreroll%2CPreroll2%2CMidroll%2CMidroll2%2CMidroll3%2CMidroll4%2CMidroll5%2CMidroll6%2CPostroll%2CPostroll2%7Cstation_id%3D3138]]></link>
+                                <itunes:author>ESPN</itunes:author>
+                                <description>We take a hike in the woods north of Santa Cruz in search of the marbled murrelet, an elusive bird that's being tracked using remote sensors and machine learning. Tweet tweet.</description>
+                                <itunes:subtitle>We take a hike in the woods north of Santa Cruz in search of the marbled murrelet, an elusive bird that's being tracked using remote sensors and machine learning. Tweet tweet.</itunes:subtitle>
+                                <itunes:summary>We take a hike in the woods north of Santa Cruz in search of the marbled murrelet, an elusive bird that's being tracked using remote sensors and machine learning. Tweet tweet.</itunes:summary>
+
+                                <enclosure url="http://c.espnradio.com/s:J1X3L/audio/2591293/whatsthepoint_2015-10-16-141833.64k.mp3?ad_params=zones%3DPreroll%2CPreroll2%2CMidroll%2CMidroll2%2CMidroll3%2CMidroll4%2CMidroll5%2CMidroll6%2CPostroll%2CPostroll2%7Cstation_id%3D3138" length="0" type="audio/mp3" />
+
+
+                                <pubDate><![CDATA[Fri, 16 Oct 2015 03:00:00 PDT]]></pubDate>
+
+                                <category><![CDATA[News]]></category>
+                                <!--
+                                <itunes:category text="News">
+                                    <itunes:category text="Sports" />
+                                </itunes:category>
+                                -->
+                                <itunes:explicit><![CDATA[No]]></itunes:explicit>
+                                <itunes:duration><![CDATA[37:46]]></itunes:duration>
+                                <itunes:keywords><![CDATA[null]]></itunes:keywords>
+                                <guid isPermaLink="false">http://sports.espn.go.com/espnradio/podcast?id=13902442</guid>
+                            </item>
+
+                            <item>
+
+                                <title>.16 The $2000/Month Chat Service: 10/8/15</title>
+                                <link><![CDATA[http://c.espnradio.com/s:J1X3L/audio/2562480/whatsthepoint_2015-10-08-205420.64k.mp3?ad_params=zones%3DPreroll%2CPreroll2%2CMidroll%2CMidroll2%2CMidroll3%2CMidroll4%2CMidroll5%2CMidroll6%2CPostroll%2CPostroll2%7Cstation_id%3D3138]]></link>
+                                <itunes:author>ESPN</itunes:author>
+                                <description>A tour of the Bloomberg terminal -- it's clunky, powerful, addictive and ubiquitous on Wall Street. It also costs $2000/month and has everything a trader could need.</description>
+                                <itunes:subtitle>A tour of the Bloomberg terminal -- it's clunky, powerful, addictive and ubiquitous on Wall Street. It also costs $2000/month and has everything a trader could need.</itunes:subtitle>
+                                <itunes:summary>A tour of the Bloomberg terminal -- it's clunky, powerful, addictive and ubiquitous on Wall Street. It also costs $2000/month and has everything a trader could need.</itunes:summary>
+
+                                <enclosure url="http://c.espnradio.com/s:J1X3L/audio/2562480/whatsthepoint_2015-10-08-205420.64k.mp3?ad_params=zones%3DPreroll%2CPreroll2%2CMidroll%2CMidroll2%2CMidroll3%2CMidroll4%2CMidroll5%2CMidroll6%2CPostroll%2CPostroll2%7Cstation_id%3D3138" length="0" type="audio/mp3" />
+
+
+                                <pubDate><![CDATA[Thu, 8 Oct 2015 03:00:00 PDT]]></pubDate>
+
+                                <category><![CDATA[News]]></category>
+                                <!--
+                                <itunes:category text="News">
+                                    <itunes:category text="Sports" />
+                                </itunes:category>
+                                -->
+                                <itunes:explicit><![CDATA[No]]></itunes:explicit>
+                                <itunes:duration><![CDATA[45:14]]></itunes:duration>
+                                <itunes:keywords><![CDATA[null]]></itunes:keywords>
+                                <guid isPermaLink="false">http://sports.espn.go.com/espnradio/podcast?id=13837991</guid>
+                            </item>
+
+</channel>
+</rss>

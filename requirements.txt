@@ -15,3 +15,8 @@ jinja2
 sendgrid
 uwsgi
 gevent
+pytz
+python-dateutil
+requests
+requests-mock
+mock
