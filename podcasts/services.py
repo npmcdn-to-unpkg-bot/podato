@@ -13,3 +13,8 @@ def get_podcast_by_url(url):
         podcast = fetcher.fetch(url)
 
     return podcast
+
+
+def update_podcast(podcast):
+    """Refetches the podcast corresponding to the given podcast object."""
+    fetcher.fetch(podcast.url)
