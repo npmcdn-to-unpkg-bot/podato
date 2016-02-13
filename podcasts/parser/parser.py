@@ -6,7 +6,7 @@ from xml.etree import cElementTree
 
 from dateutil import tz
 
-from podcasts.parser.podcast import ParsedPodcast, Episode, Enclosure, Person
+from podcasts.parser.podcast import ParsedPodcast, ParsedEpisode, Enclosure, Person
 
 ITUNES_NS = "{http://www.itunes.com/dtds/podcast-1.0.dtd}"
 
@@ -47,7 +47,7 @@ def parse_feed(feed_str):
 
 def _parse_item(item):
     """Parses an item from a podcast feed into an Episode instance"""
-    episode = Episode()
+    episode = ParsedEpisode()
 
     for child in item:
         if child.tag == "title":

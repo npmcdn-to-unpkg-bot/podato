@@ -1,5 +1,8 @@
-#warnings
+import datetime
 import itertools
+from django.db import transaction
+
+from podcasts.models import Podcast, Episode
 
 #warning constants
 W_NO_IMAGE = "W_NO_IMAGES"
@@ -83,9 +86,39 @@ class ParsedPodcast(object):
                 for ep in episodes[1:]:
                     self.episodes.remove(ep)
 
+        if self.explicit == "clean":
+            self.explicit = "c"
+        if self.explicit == "yes":
+            self.explicit = "e"
+        self.explicit = "u"
+
+    @transaction.atomic
+    def save_to_db(self):
+        podcast_obj, created = Podcast.objects.update_or_create(url=self.url, defaults={
+            "link": self.link,
+            "title": self.title,
+            "description": self.description,
+            "author": self.author,
+            "image": self.image,
+            "tags": self.tags,
+            "language": self.language,
+            "last_fetched": self.last_fetched,
+            "owner_name": self.owner.name,
+            "owner_email": self.owner.email,
+            "copyright": self.copyright,
+            "explicit": self.explicit,
+            "warnings": self.warnings
+        })
+
+        if not created:
+            podcast_obj.episodes.clear()
+
+        episode_objs = [ep.save_to_db() for ep in self.episodes]
+        podcast_obj.episodes = episode_objs
 
 
-class Episode(object):
+
+class ParsedEpisode(object):
     """The Episode class represents a podcast episode. I"""
     def __init__(self, guid=None, link=None, title=None, subtitle=None, summary=None, description=None, content=None, image=None, author=None, duration=None,
                  published=None, explicit=None, enclosure=None):
@@ -112,7 +145,33 @@ class Episode(object):
         if not self.author:
             self.warnings.append(W_NO_EPISODE_AUTHOR)
 
+        if self.explicit == "clean":
+            self.explicit = "c"
+        if self.explicit == "yes":
+            self.explicit = "e"
+        self.explicit = "u"
+
         self.guid = self.guid or self.link
+
+    def save_to_db(self):
+        episode_obj, _ = Episode.objects.update_or_create(guid=self.guid, defaults={
+            "link": self.link,
+            "title": self.link,
+            "subtitle": self.subtitle,
+            "summary": self.summary,
+            "description": self.description,
+            "content": self.content,
+            "image": self.image,
+            "author": self.author,
+            "duration": self.duration
+            "published": self.published,
+            "explicit": self.explicit,
+            "enclosure_url": self.enclosure.url,
+            "enclosure_type": self.enclosure.type,
+            "warnings": self.warnings
+        })
+
+        return episode_obj
 
 
 class Person(object):

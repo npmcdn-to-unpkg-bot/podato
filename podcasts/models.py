@@ -7,7 +7,8 @@ from utils.fields import SeparatedValuesField
 
 class Category(models.Model):
     """Podcast categories"""
-    name = models.CharField(max_length=20, primary_key=True)
+    name = models.CharField(max_length=40, primary_key=True)
+    parent_name = models.CharField(max_length=40, primary_key=True)
     visible = models.BooleanField(default=False)
 
     def __str__(self):
@@ -26,16 +27,17 @@ class Podcast(models.Model):
     url = models.CharField(max_length=255, primary_key=True)
     link = models.CharField(max_length=255)
     title = models.CharField(max_length=200)
-    author = models.CharField(max_length=200, null=True)
+    author = models.CharField(max_length=200, blank=True)
     description = models.TextField()
-    image = models.CharField(max_length=255, null=True)
-    explicit = models.CharField(max_length=1,default=-1, choices=[("u", "not set",),("c", "clean"), ("e", "explicit")])
+    copyright = models.CharField(max_length=200, blank=True)
+    image = models.CharField(max_length=255, blank=True)
+    explicit = models.CharField(max_length=1,default="u", choices=[("u", "not set",),("c", "clean"), ("e", "explicit")])
     owner_email = models.CharField(max_length=200)
     owner_name = models.CharField(max_length=200)
-    tags = models.CharField(max_length=255)
+    tags = SeparatedValuesField(max_length=200)
     categories = models.ManyToManyField(Category)
     last_fetched = models.DateTimeField()
-    warnings = SeparatedValuesField()
+    warnings = SeparatedValuesField(max_length=200)
 
     objects = PodcastManager()
 
@@ -45,6 +47,7 @@ class Podcast(models.Model):
 
 class Episode(models.Model):
     """Represents a podcast episode."""
+    guid = models.CharField(max_length=400, primary_key=True)
     podcast = models.ForeignKey(Podcast, null=False)
     title = models.CharField(max_length=255)
     link = models.CharField(max_length=255)
@@ -55,11 +58,11 @@ class Episode(models.Model):
     enclosure_type = models.CharField(max_length=20)
     enclosure_url = models.CharField(max_length=255)
     duration = models.PositiveIntegerField(default=0)
-    explicit = models.CharField(max_length=1, choices=[("u", "not set",),("c", "clean"), ("e", "explicit")])
+    explicit = models.CharField(max_length="u", choices=[("u", "not set",),("c", "clean"), ("e", "explicit")])
     author = models.CharField(max_length=255)
     image = models.CharField(max_length=255)
     published = models.DateTimeField()
-    warnings = SeparatedValuesField()
+    warnings = SeparatedValuesField(max_length=200)
 
     def __str__(self):
         return self.title
