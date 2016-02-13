@@ -13,4 +13,4 @@ def fetch(url):
 
     result = parse_feed(response.text)
     result.validate()
-    return result
+    return result.save_to_db()

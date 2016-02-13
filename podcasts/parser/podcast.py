@@ -1,4 +1,3 @@
-import datetime
 import itertools
 from django.db import transaction
 
@@ -115,7 +114,7 @@ class ParsedPodcast(object):
 
         episode_objs = [ep.save_to_db() for ep in self.episodes]
         podcast_obj.episodes = episode_objs
-
+        return podcast_obj
 
 
 class ParsedEpisode(object):
