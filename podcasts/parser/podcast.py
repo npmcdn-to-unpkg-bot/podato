@@ -80,6 +80,8 @@ class ParsedPodcast(object):
         for guid, episodes in itertools.groupby(sorted(self.episodes, key=keyfunc), key=keyfunc):
             if len(list(episodes)) > 1:
                 episodes[0].warnings.append(W_DUPLICATE_GUID)
+                for ep in episodes[1:]:
+                    self.episodes.remove(ep)
 
 
 
