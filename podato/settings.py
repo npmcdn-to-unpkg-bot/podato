@@ -264,5 +264,5 @@ DEBUG_TOOLBAR_PATCH_SETTINGS = False
 
 
 DEBUG_TOOLBAR_CONFIG = {
-    "SHOW_TOOLBAR_CALLBACK": lambda request: DEBUG
+    "SHOW_TOOLBAR_CALLBACK": lambda request: DEBUG and False
 }

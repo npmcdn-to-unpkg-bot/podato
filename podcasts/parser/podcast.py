@@ -162,7 +162,7 @@ class ParsedEpisode(object):
             "content": self.content,
             "image": self.image,
             "author": self.author,
-            "duration": self.duration
+            "duration": self.duration,
             "published": self.published,
             "explicit": self.explicit,
             "enclosure_url": self.enclosure.url,

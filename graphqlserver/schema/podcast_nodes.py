@@ -1,8 +1,10 @@
 from graphene.contrib.django.types import DjangoNode
 from graphene.contrib.django.filter import DjangoFilterConnectionField
 from graphene import relay, ObjectType
+import graphene
 
 from podcasts.models import Podcast, Episode
+from podcasts.services import get_podcast_by_url
 
 class PodcastNode(DjangoNode):
     class Meta:
@@ -27,6 +29,10 @@ class PodcastQuery(ObjectType):
     episode = relay.NodeField(EpisodeNode)
     all_podcasts = DjangoFilterConnectionField(PodcastNode)
     all_episodes = DjangoFilterConnectionField(EpisodeNode)
+    podcast_by_url = graphene.Field(PodcastNode, url=graphene.String())
+
+    def resolve_podcast_by_url(self, args, info):
+        return PodcastNode(get_podcast_by_url(args.get("url")))
 
     class Meta:
         abstract = True

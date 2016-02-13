@@ -41,6 +41,7 @@ class Podcast(models.Model):
     categories = models.ManyToManyField(Category)
     last_fetched = models.DateTimeField()
     warnings = SeparatedValuesField(max_length=200, blank=True, null=True)
+    language = models.CharField(max_length=20, blank=True, null=True)
 
     objects = PodcastManager()
 
@@ -65,7 +66,7 @@ class Episode(models.Model):
     author = models.CharField(max_length=255, blank=True, null=True)
     image = models.URLField(max_length=255, blank=True, null=True)
     published = models.DateTimeField()
-    warnings = SeparatedValuesField(max_length=200, blank=True)
+    warnings = SeparatedValuesField(max_length=200, blank=True, null=True)
 
     def __str__(self):
         return self.title
