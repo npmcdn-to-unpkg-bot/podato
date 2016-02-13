@@ -6,13 +6,14 @@ import graphene
 from podcasts.models import Podcast, Episode
 from podcasts.services import get_podcast_by_url
 
+
 class PodcastNode(DjangoNode):
     class Meta:
         model = Podcast
         filter_fields = ['title', 'author', 'url', 'tags']
         filter_order_by = ['author']
         only_fields = ("url", "link", "title", "description", "copyright", "author", "episodes", "image", "tags",
-                       "last_fetched", "")
+                       "last_fetched")
 
 
 class EpisodeNode(DjangoNode):

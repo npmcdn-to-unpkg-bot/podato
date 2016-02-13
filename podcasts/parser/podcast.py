@@ -112,7 +112,7 @@ class ParsedPodcast(object):
         if not created:
             podcast_obj.episodes.clear()
 
-        episode_objs = [ep.save_to_db() for ep in self.episodes]
+        episode_objs = [ep.save_to_db(podcast_obj) for ep in self.episodes]
         podcast_obj.episodes = episode_objs
         return podcast_obj
 
@@ -152,10 +152,11 @@ class ParsedEpisode(object):
 
         self.guid = self.guid or self.link
 
-    def save_to_db(self):
+    def save_to_db(self, podcast):
         episode_obj, _ = Episode.objects.update_or_create(guid=self.guid, defaults={
+            "podcast": podcast,
             "link": self.link,
-            "title": self.link,
+            "title": self.title,
             "subtitle": self.subtitle,
             "summary": self.summary,
             "description": self.description,

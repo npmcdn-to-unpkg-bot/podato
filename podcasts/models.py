@@ -52,7 +52,7 @@ class Podcast(models.Model):
 class Episode(models.Model):
     """Represents a podcast episode."""
     guid = models.CharField(max_length=400, primary_key=True)
-    podcast = models.ForeignKey(Podcast, null=True)
+    podcast = models.ForeignKey(Podcast, null=True, related_name="episodes")
     title = models.CharField(max_length=255)
     link = models.URLField(max_length=255)
     subtitle = models.CharField(max_length=255, blank=True, null=True)
