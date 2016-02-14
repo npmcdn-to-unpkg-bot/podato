@@ -6,7 +6,7 @@ from xml.etree import cElementTree
 
 from dateutil import tz
 
-from podcasts.parser.podcast import ParsedPodcast, ParsedEpisode, Enclosure, Person
+from podcasts.parser.parsed_podcasts import ParsedPodcast, ParsedEpisode, Enclosure, Person
 
 ITUNES_NS = "{http://www.itunes.com/dtds/podcast-1.0.dtd}"
 

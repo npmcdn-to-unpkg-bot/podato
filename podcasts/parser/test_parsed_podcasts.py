@@ -2,13 +2,13 @@
 """Tests for the  podcasts module."""
 import datetime
 
-from podcasts.parser import podcast as podcast_objects
-from podcasts.parser.podcast import Podcast, Episode, Enclosure, Person
+from podcasts.parser import parsed_podcasts as podcast_objects
+from podcasts.parser.parsed_podcasts import ParsedPodcast, ParsedEpisode, Enclosure, Person
 
 
 def create_valid_podcast():
     """Creates a valid podcast."""
-    return Podcast(
+    return ParsedPodcast(
         title="Title",
         author="Someone Else",
         categories=[["a"], ["a", "b"]],
@@ -23,7 +23,7 @@ def create_valid_podcast():
         tags=["a", "b"],
         owner=Person(name="John Doe", email="jdoe@mail.com"),
         episodes=[
-            Episode(
+            ParsedEpisode(
                 title="Episode %s" % i,
                 subtitle="Subtitle",
                 description="The description here",
@@ -133,7 +133,7 @@ def test_episode_no_author():
 
 
 def test_duplicate_guid():
-    """Test that validating a podcast with an episode with no GUID generates the appropriate warning."""
+    """Test that validating a podcast with two episode with the same GUID generates the appropriate warning."""
     podcast = create_valid_podcast()
     podcast.episodes[3].guid = podcast.episodes[0].guid
 
