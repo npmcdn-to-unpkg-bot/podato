@@ -210,3 +210,17 @@ def test_disassociate_old_episodes(transactional_db):
     podcast.save_to_db()
 
     assert len(podcast_model.episodes.all()) == len(TEST_DATA["episodes"]) - 1
+
+
+def test_save_to_db_saves_categories(transactional_db):
+    """Checks that save_to_db saves podcast categories."""
+    podcast = create_valid_podcast()
+    podcast.validate()
+
+    podcast_model = podcast.save_to_db()
+
+    assert len(podcast_model.categories.all()) == 2
+    assert {category.name for category in podcast_model.categories.all()} == \
+           {category[-1] for category in TEST_DATA["categories"]}
+
+    assert models.Category.objects.get(name="b").parent_name == "a"

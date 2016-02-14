@@ -1,7 +1,7 @@
 import itertools
 from django.db import transaction
 
-from podcasts.models import Podcast, Episode
+from podcasts.models import Podcast, Episode, Category
 
 #warning constants
 W_NO_IMAGE = "W_NO_IMAGES"
@@ -94,6 +94,7 @@ class ParsedPodcast(object):
 
     @transaction.atomic
     def save_to_db(self):
+        """Store the podcast and all its related models in the database."""
         podcast_obj, created = Podcast.objects.update_or_create(url=self.url, defaults={
             "link": self.link,
             "title": self.title,
@@ -115,6 +116,16 @@ class ParsedPodcast(object):
 
         episode_objs = [ep.save_to_db(podcast_obj) for ep in self.episodes]
         podcast_obj.episodes = episode_objs
+
+        category_objs = []
+        for category in self.categories:
+            parent = None
+            for name in category:
+                category, _ = Category.objects.get_or_create(name=name, parent_name=parent, defaults={"visible": False})
+                category_objs.append(category)
+                parent = name
+
+        podcast_obj.categories.set(category_objs, clear=True)
         return podcast_obj
 
 
