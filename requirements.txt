@@ -21,4 +21,5 @@ requests
 requests-mock
 mock
 pytest
+freezegun
 pytest-django
