@@ -139,4 +139,4 @@ def test_duplicate_guid():
 
     podcast.validate()
 
-    assert podcast.warnings[0] == podcast_objects.W_DUPLICATE_GUID % podcast.episodes[0].guid
+    assert podcast.episodes[0].warnings[0] == podcast_objects.W_DUPLICATE_GUID
