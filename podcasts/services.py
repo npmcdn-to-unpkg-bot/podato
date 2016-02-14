@@ -18,3 +18,7 @@ def get_podcast_by_url(url):
 def update_podcast(podcast):
     """Refetches the podcast corresponding to the given podcast object."""
     fetcher.fetch(podcast.url)
+
+
+def subscribe_user_to_podcast(user, podcast):
+    user.subscriptions.create(podcast=podcast)
