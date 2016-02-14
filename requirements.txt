@@ -20,3 +20,5 @@ python-dateutil
 requests
 requests-mock
 mock
+pytest
+pytest-django
