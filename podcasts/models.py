@@ -8,7 +8,7 @@ from utils.fields import SeparatedValuesField
 class Category(models.Model):
     """Podcast categories"""
     name = models.CharField(max_length=40)
-    parent_name = models.CharField(max_length=40, blank=True)
+    parent_name = models.CharField(max_length=40, blank=True, null=True)
     visible = models.BooleanField(default=False)
 
     class Meta:
