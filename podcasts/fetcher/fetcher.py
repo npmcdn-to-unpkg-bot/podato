@@ -16,4 +16,4 @@ def fetch(url):
     result.last_fetched = datetime.datetime.utcnow()
     result.url = url
     result.validate()
-    return result.save_to_db()
+    return result

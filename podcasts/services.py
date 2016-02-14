@@ -11,6 +11,7 @@ def get_podcast_by_url(url):
         podcast = None
     if not podcast:
         podcast = fetcher.fetch(url)
+        podcast = podcast.save_to_db()
 
     return podcast
 

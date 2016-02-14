@@ -92,7 +92,7 @@ def test_no_categories():
     assert podcast.warnings[0] == podcast_objects.W_NO_CATEGORIES
 
 
-def test_no_LANGUAGE():
+def test_no_language():
     """Test that validating a podcast with no language generates the appropriate warning."""
     podcast = create_valid_podcast()
     podcast.language = None
@@ -109,7 +109,7 @@ def test_no_episode_guid():
 
     podcast.validate()
 
-    assert podcast.warnings[0] == podcast_objects.W_NO_GUID % podcast.episodes[0].title
+    assert podcast.episodes[0].warnings[0] == podcast_objects.W_NO_GUID
 
 
 def test_no_episode_duration():
@@ -119,7 +119,7 @@ def test_no_episode_duration():
 
     podcast.validate()
 
-    assert podcast.warnings[0] == podcast_objects.W_NO_DURATION % podcast.episodes[0].title
+    assert podcast.episodes[0].warnings[0] == podcast_objects.W_NO_DURATION
 
 
 def test_episode_no_author():
@@ -129,7 +129,7 @@ def test_episode_no_author():
 
     podcast.validate()
 
-    assert podcast.warnings[0] == podcast_objects.W_NO_EPISODE_AUTHOR % podcast.episodes[0].title
+    assert podcast.episodes[0].warnings[0] == podcast_objects.W_NO_EPISODE_AUTHOR
 
 
 def test_duplicate_guid():
