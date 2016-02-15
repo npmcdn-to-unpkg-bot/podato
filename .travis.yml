@@ -12,8 +12,8 @@ install:
   - touch local.env
   - env >> local.env
   - docker-compose build
-  - docker-compose run web python manage.py collectstatic -noinput
-  - docker-compose run web python manage.py makemigrations -noinput
+  - docker-compose run web python manage.py collectstatic --noinput
+  - docker-compose run web python manage.py makemigrations --noinput
 
 script:
   - docker-compose run web py.test
