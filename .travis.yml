@@ -18,3 +18,8 @@ install:
 script:
   - docker-compose run web py.test
 
+notifications:
+  email:
+    on_success: change
+    on_failure: change
+
