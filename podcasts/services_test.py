@@ -109,6 +109,23 @@ def test_subscribe_user_to_podcast_twice(transactional_db):
     assert len(user.subscriptions.all()) == 1
 
 
+def test_resubscribe_user_to_podcast(transactional_db):
+    user = User(username="foo", password="monkey123", email="user@example.com")
+    user.save()
+    podcast = get_valid_podcast_model()
+    podcast.save()
+    now = datetime.datetime.now()
+    user.subscriptions.create(podcast=podcast, unsubscribed=now)
+    future = now + datetime.timedelta(days=1)
+
+    with freezegun.freeze_time(future):
+        result = services.subscribe_user_to_podcast(user, podcast)
+
+        assert result == True
+        assert models.Subscription.objects.get(podcast=podcast, unsubscribed=None)\
+                   .subscribed.replace(tzinfo=None) == future
+
+
 def test_is_user_subscribed_with_not_subscribed_user(transactional_db):
     """Check is_user_subscribed returns False if the user is'nt subscribed."""
     user = get_valid_user()
@@ -127,6 +144,33 @@ def test_is_user_subscribed_with_subscribed_user(transactional_db):
     user.save()
     podcast = get_valid_podcast_model()
     podcast.save()
+    user.subscriptions.create(podcast=podcast)
+
+    result = services.is_user_subscribed(user, podcast)
+
+    assert result == True
+
+
+def test_is_user_subscribed_with_unsubscribed_user(transactional_db):
+    """Check is_user_subscribed returns False if the user was previously subscribed, but is now unsubscribed."""
+    user = get_valid_user()
+    user.save()
+    podcast = get_valid_podcast_model()
+    podcast.save()
+    user.subscriptions.create(podcast=podcast, unsubscribed=datetime.datetime.utcnow() + datetime.timedelta(days=1))
+
+    result = services.is_user_subscribed(user, podcast)
+
+    assert result == False
+
+
+def test_is_user_subscribed_with_resubscribed_user(transactional_db):
+    """Check is_user_subscribed returns True if the user had previously unsubscribed, but has re-subscribed."""
+    user = get_valid_user()
+    user.save()
+    podcast = get_valid_podcast_model()
+    podcast.save()
+    user.subscriptions.create(podcast=podcast, unsubscribed=datetime.datetime.utcnow() + datetime.timedelta(days=1))
     user.subscriptions.create(podcast=podcast)
 
     result = services.is_user_subscribed(user, podcast)
