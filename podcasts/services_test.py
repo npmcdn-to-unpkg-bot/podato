@@ -54,3 +54,19 @@ def test_get_podcast_by_url_fetches_podcast_if_not_in_db(monkeypatch):
     parsed_podcast_mock.save_to_db.assert_called_with()
     # Assert that it returns the model, as returned from save_to_db.
     assert result == podcast_model
+
+
+def test_update_podcast(monkeypatch):
+    """Test that update_podcast fetches the podcast and saves it."""
+    # Set up the mock value for the fetcher to return.
+    podcast_model = get_valid_podcast_model()
+    parsed_podcast_mock = Mock(spec=parsed_podcasts.ParsedPodcast())
+    parsed_podcast_mock.save_to_db.return_value = podcast_model
+    fetch_mock = Mock(return_value=parsed_podcast_mock)
+    monkeypatch.setattr(fetcher, "fetch", fetch_mock)
+
+    services.update_podcast(podcast_model)
+
+    fetcher.fetch.assert_called_with(FEED_URL)
+    parsed_podcast_mock.save_to_db.assert_called_with()
+
