@@ -9,6 +9,8 @@ services:
   - docker
 
 install:
+  - touch local.env
+  - env >> local.env
   - docker-compose build
   - docker-compose run web python manage.py collectstatic
   - docker-compose run web python manage.py makemigrations
