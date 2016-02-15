@@ -4,7 +4,7 @@ import datetime
 import pytest
 import freezegun
 
-from podcasts.parser.test_parser import read_test_file
+from podcasts.parser.parser_test import read_test_file
 from podcasts.errors import InvalidFeed
 
 FEED_URL = "http://example.com/podcast/feed.xml"
