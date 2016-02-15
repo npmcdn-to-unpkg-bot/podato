@@ -82,7 +82,7 @@ class Subscription(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, blank=False, related_name="subscriptions")
     podcast = models.OneToOneField(Podcast, related_name="subscriptions")
     subscribed = models.DateTimeField(auto_now_add=True, help_text="The date on which the user subscribed to this podcast")
-    unsubscribed = models.DateTimeField(help_text="The date on which the user unsubscribed from this podcast.")
+    unsubscribed = models.DateTimeField(help_text="The date on which the user unsubscribed from this podcast.", null=True)
 
 
 
