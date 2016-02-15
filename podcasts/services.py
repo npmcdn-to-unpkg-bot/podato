@@ -24,7 +24,12 @@ def update_podcast(podcast):
 @transaction.atomic
 def subscribe_user_to_podcast(user, podcast):
     """Subscribe the user to the given podcast. Returns True if successful, False if already subscribed."""
-    if user.subscriptions.filter(podcast=podcast, unsubscribed=None).count() == 0:
+    if not is_user_subscribed(user, podcast):
         user.subscriptions.create(podcast=podcast)
         return True
     return False
+
+
+def is_user_subscribed(user, podcast):
+    """Returns whether the user is subscribed to the given podcast."""
+    return user.subscriptions.filter(podcast=podcast, unsubscribed=None).count() > 0

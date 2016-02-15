@@ -34,6 +34,10 @@ def test_get_podcast_by_url_retrieves_model(monkeypatch):
     models.Podcast.objects.get.assert_called_with(url=FEED_URL)
 
 
+def get_valid_user():
+    return User(username="foo", password="monkey123", email="user@example.com")
+
+
 def test_get_podcast_by_url_fetches_podcast_if_not_in_db(monkeypatch):
     """Test that get_podcast_by_url fetches the podcast if it isn't in the database"""
     # We want to force the podcast to be fetched, so Podcast.objects.get needs to raise an error.
@@ -75,7 +79,7 @@ def test_update_podcast(monkeypatch):
 
 def test_subscribe_user_to_podcast(transactional_db):
     """Test that subscribe_user_to_podcast creates a new subscription"""
-    user = User(username="foo", password="monkey123", email="user@example.com")
+    user = get_valid_user()
     user.save()
     podcast = get_valid_podcast_model()
     podcast.save()
@@ -103,3 +107,28 @@ def test_subscribe_user_to_podcast_twice(transactional_db):
 
     assert result == False
     assert len(user.subscriptions.all()) == 1
+
+
+def test_is_user_subscribed_with_not_subscribed_user(transactional_db):
+    """Check is_user_subscribed returns False if the user is'nt subscribed."""
+    user = get_valid_user()
+    user.save()
+    podcast = get_valid_podcast_model()
+    podcast.save()
+
+    result = services.is_user_subscribed(user, podcast)
+
+    assert result == False
+
+
+def test_is_user_subscribed_with_subscribed_user(transactional_db):
+    """Check is_user_subscribed returns True if the user is subscribed."""
+    user = get_valid_user()
+    user.save()
+    podcast = get_valid_podcast_model()
+    podcast.save()
+    user.subscriptions.create(podcast=podcast)
+
+    result = services.is_user_subscribed(user, podcast)
+
+    assert result == True
