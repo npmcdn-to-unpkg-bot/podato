@@ -1,4 +1,4 @@
-from django.db import models
+from django.db import models, transaction
 
 from podcasts.models import Podcast
 from podcasts.fetcher import fetcher
@@ -21,5 +21,10 @@ def update_podcast(podcast):
     fetcher.fetch(podcast.url).save_to_db()
 
 
+@transaction.atomic
 def subscribe_user_to_podcast(user, podcast):
-    user.subscriptions.create(podcast=podcast)
+    """Subscribe the user to the given podcast. Returns True if successful, False if already subscribed."""
+    if user.subscriptions.filter(podcast=podcast, unsubscribed=None).count() == 0:
+        user.subscriptions.create(podcast=podcast)
+        return True
+    return False

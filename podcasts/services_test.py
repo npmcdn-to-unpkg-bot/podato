@@ -82,10 +82,24 @@ def test_subscribe_user_to_podcast(transactional_db):
     now = datetime.datetime.now()
 
     with freezegun.freeze_time(now):
-        services.subscribe_user_to_podcast(user, podcast)
+        result = services.subscribe_user_to_podcast(user, podcast)
 
+        assert result == True
         assert len(user.subscriptions.all()) == 1
         subscription_model = models.Subscription.objects.get(user=user)
         assert subscription_model.podcast == podcast
         assert subscription_model.subscribed.replace(tzinfo=None) == now
 
+
+def test_subscribe_user_to_podcast_twice(transactional_db):
+    """Test that subscribe_user_to_podcast doesn't create a new subscription when the user is already subscribed."""
+    user = User(username="foo", password="monkey123", email="user@example.com")
+    user.save()
+    podcast = get_valid_podcast_model()
+    podcast.save()
+
+    services.subscribe_user_to_podcast(user, podcast)
+    result = services.subscribe_user_to_podcast(user, podcast)
+
+    assert result == False
+    assert len(user.subscriptions.all()) == 1
