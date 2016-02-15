@@ -132,3 +132,33 @@ def test_is_user_subscribed_with_subscribed_user(transactional_db):
     result = services.is_user_subscribed(user, podcast)
 
     assert result == True
+
+
+def test_unsubscribe(transactional_db):
+    """Test that the user is correctly unsubscribed"""
+    user = get_valid_user()
+    user.save()
+    podcast = get_valid_podcast_model()
+    podcast.save()
+    user.subscriptions.create(podcast=podcast)
+    now = datetime.datetime.now()
+
+    with freezegun.freeze_time(now):
+        result = services.unsubscribe_user_from_podcast(user, podcast)
+
+        assert result == True
+        assert user.subscriptions.get(podcast=podcast).unsubscribed.replace(tzinfo=None) == now
+
+
+def test_unsubscribe_user_not_subscribed(transactional_db):
+    """Test that the method still runs, but returns False when the user is not subscribed."""
+    user = get_valid_user()
+    user.save()
+    podcast = get_valid_podcast_model()
+    podcast.save()
+
+    result = services.unsubscribe_user_from_podcast(user, podcast)
+
+    assert result == False
+
+

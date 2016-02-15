@@ -1,5 +1,7 @@
 from django.db import models, transaction
 
+import datetime
+
 from podcasts.models import Podcast
 from podcasts.fetcher import fetcher
 
@@ -28,6 +30,12 @@ def subscribe_user_to_podcast(user, podcast):
         user.subscriptions.create(podcast=podcast)
         return True
     return False
+
+
+def unsubscribe_user_from_podcast(user, podcast):
+    """Unsubscribe the user from the given podcast."""
+    return user.subscriptions.filter(podcast=podcast, unsubscribed=None)\
+        .update(unsubscribed=datetime.datetime.utcnow()) > 0
 
 
 def is_user_subscribed(user, podcast):
