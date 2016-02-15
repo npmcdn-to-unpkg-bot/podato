@@ -1,7 +1,9 @@
 from mock import Mock
 
 import datetime
+import freezegun
 
+from django.contrib.auth.models import User
 from podcasts import models
 from podcasts import services
 from podcasts.fetcher import fetcher
@@ -69,4 +71,21 @@ def test_update_podcast(monkeypatch):
 
     fetcher.fetch.assert_called_with(FEED_URL)
     parsed_podcast_mock.save_to_db.assert_called_with()
+
+
+def test_subscribe_user_to_podcast(transactional_db):
+    """Test that subscribe_user_to_podcast creates a new subscription"""
+    user = User(username="foo", password="monkey123", email="user@example.com")
+    user.save()
+    podcast = get_valid_podcast_model()
+    podcast.save()
+    now = datetime.datetime.now()
+
+    with freezegun.freeze_time(now):
+        services.subscribe_user_to_podcast(user, podcast)
+
+        assert len(user.subscriptions.all()) == 1
+        subscription_model = models.Subscription.objects.get(user=user)
+        assert subscription_model.podcast == podcast
+        assert subscription_model.subscribed.replace(tzinfo=None) == now
 
