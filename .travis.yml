@@ -1,0 +1,18 @@
+sudo: required
+
+language: python
+
+env:
+  DOCKER_COMPOSE_VERSION: 1.4.2
+
+services:
+  - docker
+
+install:
+  - docker-compose build
+  - docker-compose run web python manage.py collectstatic
+  - docker-compose run web python manage.py makemigrations
+
+script:
+  - docker-compose run web py.test
+
