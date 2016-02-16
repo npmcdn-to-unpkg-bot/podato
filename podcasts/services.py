@@ -2,8 +2,9 @@ from django.db import models, transaction
 from gevent.pool import Pool
 import datetime
 
-from podcasts.models import Podcast
+from podcasts.models import Podcast, Subscription
 from podcasts.fetcher import fetcher
+from podcasts.errors import InvalidFeed
 
 def _fetch_podcast(url):
     """Fetches the podcast and stores it in the database.
@@ -11,7 +12,10 @@ def _fetch_podcast(url):
     This should only be called if the podcast is not in the database, or if the podcast
     needs to be updated. other uses should use get_podcast_by_url.
     """
-    podcast = fetcher.fetch(url)
+    try:
+        podcast = fetcher.fetch(url)
+    except InvalidFeed:
+        return None
     return podcast.save_to_db()
 
 
@@ -54,6 +58,20 @@ def subscribe_user_to_podcast(user, podcast):
         user.subscriptions.create(podcast=podcast)
         return True
     return False
+
+
+def subscribe_user_by_urls(user, urls):
+    podcast_dict = get_multi_podcasts_by_url(urls)
+    result_dict = {}
+    podcasts = []
+    for url, podcast in podcast_dict.iteritems():
+        if not podcast:
+            result_dict[url] = False
+        else:
+            podcasts.append(podcast)
+            result_dict[url] = True
+
+    Subscription.objects.bulk_create([Subscription(user=user, podcast=podcast) for podcast in podcasts])
 
 
 def unsubscribe_user_from_podcast(user, podcast):

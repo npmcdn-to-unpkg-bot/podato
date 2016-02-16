@@ -255,3 +255,24 @@ def test_get_multi_podcasts_by_url_missing_model(monkeypatch):
         url4: podcast4
     }
 
+
+def test_subscribe_user_by_urls(monkeypatch):
+    url1 = "http://example1.com/feed"
+    url2 = "http://example2.com/feed"
+    podcast1 = get_valid_podcast_model(url1)
+    podcast2 = get_valid_podcast_model(url2)
+    get_multi_podcast_mock = Mock(return_value={
+        url1: podcast1,
+        url2: podcast2
+    })
+    user_model = get_valid_user()
+    subscription_mock = Mock()
+    monkeypatch.setattr(services, "get_multi_podcasts_by_url", get_multi_podcast_mock)
+    monkeypatch.setattr(services, "Subscription", subscription_mock)
+    monkeypatch.setattr(models,"Subscription", subscription_mock)
+
+    services.subscribe_user_by_urls(user_model, [url1, url2])
+
+    get_multi_podcast_mock.assert_called_with([url1, url2])
+    assert subscription_mock.objects.bulk_create.call_count == 1
+    subscription_mock.objects.bulk_create.assert_called_with([models.Subscription(podcast=podcast1), models.Subscription(podcast=podcast2)])
