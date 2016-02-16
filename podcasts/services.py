@@ -1,21 +1,45 @@
 from django.db import models, transaction
-
+from gevent.pool import Pool
 import datetime
 
 from podcasts.models import Podcast
 from podcasts.fetcher import fetcher
+
+def _fetch_podcast(url):
+    """Fetches the podcast and stores it in the database.
+
+    This should only be called if the podcast is not in the database, or if the podcast
+    needs to be updated. other uses should use get_podcast_by_url.
+    """
+    podcast = fetcher.fetch(url)
+    return podcast.save_to_db()
+
+
 
 def get_podcast_by_url(url):
     """Gets a podcast given its feed url. Fetches it if it's not yet in the database."""
     try:
         podcast = Podcast.objects.get(url=url)
     except models.ObjectDoesNotExist:
-        podcast = None
-    if not podcast:
-        podcast = fetcher.fetch(url)
-        podcast = podcast.save_to_db()
+        podcast = _fetch_podcast(url)
 
     return podcast
+
+
+def get_multi_podcasts_by_url(urls):
+    podcast_dict = Podcast.objects.in_bulk(urls)
+
+    pool = Pool(size=20)
+    for url in urls:
+        if url not in podcast_dict:
+            def _get_missing_podcast(missing_url):
+                podcast_dict[missing_url] = _fetch_podcast(missing_url)
+            pool.spawn(_get_missing_podcast, url)
+
+    pool.join(timeout=30)
+
+    return podcast_dict
+
 
 
 def update_podcast(podcast):

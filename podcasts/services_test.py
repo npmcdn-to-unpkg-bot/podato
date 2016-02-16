@@ -11,9 +11,9 @@ from podcasts.parser import parsed_podcasts
 
 FEED_URL = "http://example.com/feed.xml"
 
-def get_valid_podcast_model():
+def get_valid_podcast_model(url=FEED_URL):
     return models.Podcast(
-        url=FEED_URL,
+        url=url,
         link="http://example.com/podcast",
         title="example feed",
         author="Example Guy",
@@ -205,4 +205,53 @@ def test_unsubscribe_user_not_subscribed(transactional_db):
 
     assert result == False
 
+
+def test_get_multi_podcasts_by_url(monkeypatch):
+    """Test that get_multi_podcasts_by_url loads and returns the correct podcasts"""
+    url1 = "http://example1.com/feed"
+    url2 = "http://example2.com/feed"
+    podcast1 = get_valid_podcast_model(url1)
+    podcast2 = get_valid_podcast_model(url2)
+    in_bulk_mock = Mock(return_value={
+        url1: podcast1,
+        url2: podcast2
+    })
+    monkeypatch.setattr(models.Podcast.objects, "in_bulk", in_bulk_mock)
+
+    result = services.get_multi_podcasts_by_url([url1, url2])
+
+    assert result == {url1: podcast1, url2: podcast2}
+
+
+def test_get_multi_podcasts_by_url_missing_model(monkeypatch):
+    """Test that get_multi_podcasts_by_url loads and returns the correct podcasts, fetching any missing podcasts."""
+    # Set up 4 podcasts: 2 in the db, and 2 to be fetched.
+    url1 = "http://example1.com/feed"
+    url2 = "http://example2.com/feed"
+    url3 = "http://example3.com/feed"
+    url4 = "http://example4.com/feed"
+    podcast1 = get_valid_podcast_model(url1)
+    podcast2 = get_valid_podcast_model(url2)
+    podcast3 = get_valid_podcast_model(url3)
+    podcast4 = get_valid_podcast_model(url4)
+    in_bulk_mock = Mock(return_value={
+        url1: podcast1,
+        url2: podcast2
+    })
+    parsed_podcast_mock_1 = Mock(spec=parsed_podcasts.ParsedPodcast())
+    parsed_podcast_mock_2 = Mock(spec=parsed_podcasts.ParsedPodcast())
+    parsed_podcast_mock_1.save_to_db.return_value = podcast3
+    parsed_podcast_mock_2.save_to_db.return_value = podcast4
+    fetch_mock = Mock(side_effect=lambda url: {url3: parsed_podcast_mock_1, url4: parsed_podcast_mock_2}[url])
+    monkeypatch.setattr(fetcher, "fetch", fetch_mock)
+    monkeypatch.setattr(models.Podcast.objects, "in_bulk", in_bulk_mock)
+
+    result = services.get_multi_podcasts_by_url([url1, url2, url3, url4])
+
+    assert result == {
+        url1: podcast1,
+        url2: podcast2,
+        url3: podcast3,
+        url4: podcast4
+    }
 
