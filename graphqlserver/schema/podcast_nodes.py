@@ -14,7 +14,7 @@ class PodcastNode(DjangoNode):
         filter_fields = ['title', 'author', 'url', 'tags']
         filter_order_by = ['author']
         only_fields = ("url", "link", "title", "description", "copyright", "author", "episodes", "image", "tags",
-                       "last_fetched")
+                       "last_fetched", "subscribers")
 
 
 class EpisodeNode(DjangoNode):
