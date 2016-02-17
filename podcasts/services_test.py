@@ -89,7 +89,7 @@ def test_subscribe_user_to_podcast(transactional_db):
         result = services.subscribe_user_to_podcast(user, podcast)
 
         assert result == True
-        assert len(user.subscriptions.all()) == 1
+        assert len(user.subscription_objs.all()) == 1
         subscription_model = models.Subscription.objects.get(user=user)
         assert subscription_model.podcast == podcast
         assert subscription_model.subscribed.replace(tzinfo=None) == now
@@ -106,7 +106,7 @@ def test_subscribe_user_to_podcast_twice(transactional_db):
     result = services.subscribe_user_to_podcast(user, podcast)
 
     assert result == False
-    assert len(user.subscriptions.all()) == 1
+    assert len(user.subscription_objs.all()) == 1
 
 
 def test_resubscribe_user_to_podcast(transactional_db):
@@ -115,7 +115,7 @@ def test_resubscribe_user_to_podcast(transactional_db):
     podcast = get_valid_podcast_model()
     podcast.save()
     now = datetime.datetime.now()
-    user.subscriptions.create(podcast=podcast, unsubscribed=now)
+    user.subscription_objs.create(podcast=podcast, unsubscribed=now)
     future = now + datetime.timedelta(days=1)
 
     with freezegun.freeze_time(future):
@@ -144,7 +144,7 @@ def test_is_user_subscribed_with_subscribed_user(transactional_db):
     user.save()
     podcast = get_valid_podcast_model()
     podcast.save()
-    user.subscriptions.create(podcast=podcast)
+    user.subscription_objs.create(podcast=podcast)
 
     result = services.is_user_subscribed(user, podcast)
 
@@ -157,7 +157,7 @@ def test_is_user_subscribed_with_unsubscribed_user(transactional_db):
     user.save()
     podcast = get_valid_podcast_model()
     podcast.save()
-    user.subscriptions.create(podcast=podcast, unsubscribed=datetime.datetime.utcnow() + datetime.timedelta(days=1))
+    user.subscription_objs.create(podcast=podcast, unsubscribed=datetime.datetime.utcnow() + datetime.timedelta(days=1))
 
     result = services.is_user_subscribed(user, podcast)
 
@@ -170,8 +170,8 @@ def test_is_user_subscribed_with_resubscribed_user(transactional_db):
     user.save()
     podcast = get_valid_podcast_model()
     podcast.save()
-    user.subscriptions.create(podcast=podcast, unsubscribed=datetime.datetime.utcnow() + datetime.timedelta(days=1))
-    user.subscriptions.create(podcast=podcast)
+    user.subscription_objs.create(podcast=podcast, unsubscribed=datetime.datetime.utcnow() + datetime.timedelta(days=1))
+    user.subscription_objs.create(podcast=podcast)
 
     result = services.is_user_subscribed(user, podcast)
 
@@ -184,14 +184,14 @@ def test_unsubscribe(transactional_db):
     user.save()
     podcast = get_valid_podcast_model()
     podcast.save()
-    user.subscriptions.create(podcast=podcast)
+    user.subscription_objs.create(podcast=podcast)
     now = datetime.datetime.now()
 
     with freezegun.freeze_time(now):
         result = services.unsubscribe_user_from_podcast(user, podcast)
 
         assert result == True
-        assert user.subscriptions.get(podcast=podcast).unsubscribed.replace(tzinfo=None) == now
+        assert user.subscription_objs.get(podcast=podcast).unsubscribed.replace(tzinfo=None) == now
 
 
 def test_unsubscribe_user_not_subscribed(transactional_db):
@@ -285,11 +285,11 @@ def test_subscribe_user_by_urls_already_subscribed(db):
     podcast.save()
     user = get_valid_user()
     user.save()
-    user.subscriptions.create(podcast=podcast)
+    user.subscription_objs.create(podcast=podcast)
 
     services.subscribe_user_by_urls(user, [url])
 
-    assert len(user.subscriptions.all()) == 1
+    assert len(user.subscription_objs.all()) == 1
 
 
 def test_subscribe_user_by_urls_previously_unsubscribed(db):
@@ -299,8 +299,8 @@ def test_subscribe_user_by_urls_previously_unsubscribed(db):
     podcast.save()
     user = get_valid_user()
     user.save()
-    user.subscriptions.create(podcast=podcast, unsubscribed=datetime.datetime.now()+datetime.timedelta(days=1))
+    user.subscription_objs.create(podcast=podcast, unsubscribed=datetime.datetime.now()+datetime.timedelta(days=1))
 
     services.subscribe_user_by_urls(user, [url])
 
-    assert len(user.subscriptions.all()) == 2
+    assert len(user.subscription_objs.all()) == 2
