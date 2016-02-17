@@ -276,3 +276,31 @@ def test_subscribe_user_by_urls(monkeypatch):
     get_multi_podcast_mock.assert_called_with([url1, url2])
     assert subscription_mock.objects.bulk_create.call_count == 1
     subscription_mock.objects.bulk_create.assert_called_with([models.Subscription(podcast=podcast1), models.Subscription(podcast=podcast2)])
+
+
+def test_subscribe_user_by_urls_already_subscribed(db):
+    """Test that the user isn't subscribed twice to a podcast."""
+    url = "http://example.com/feed"
+    podcast = get_valid_podcast_model(url)
+    podcast.save()
+    user = get_valid_user()
+    user.save()
+    user.subscriptions.create(podcast=podcast)
+
+    services.subscribe_user_by_urls(user, [url])
+
+    assert len(user.subscriptions.all()) == 1
+
+
+def test_subscribe_user_by_urls_previously_unsubscribed(db):
+    """Test that the user is re-subscribed if they were previously unsubscribed.."""
+    url = "http://example.com/feed"
+    podcast = get_valid_podcast_model(url)
+    podcast.save()
+    user = get_valid_user()
+    user.save()
+    user.subscriptions.create(podcast=podcast, unsubscribed=datetime.datetime.now()+datetime.timedelta(days=1))
+
+    services.subscribe_user_by_urls(user, [url])
+
+    assert len(user.subscriptions.all()) == 2

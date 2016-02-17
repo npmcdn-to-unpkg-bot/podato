@@ -61,6 +61,7 @@ def subscribe_user_to_podcast(user, podcast):
 
 
 def subscribe_user_by_urls(user, urls):
+    subscribed_urls = [sub["podcast"] for sub in user.subscriptions.filter(unsubscribed__isnull=True).values("podcast")]
     podcast_dict = get_multi_podcasts_by_url(urls)
     result_dict = {}
     podcasts = []
@@ -71,7 +72,8 @@ def subscribe_user_by_urls(user, urls):
             podcasts.append(podcast)
             result_dict[url] = True
 
-    Subscription.objects.bulk_create([Subscription(user=user, podcast=podcast) for podcast in podcasts])
+    Subscription.objects.bulk_create([Subscription(user=user, podcast=podcast) for podcast in podcasts
+                                      if podcast.url not in subscribed_urls])
     return result_dict
 
 
