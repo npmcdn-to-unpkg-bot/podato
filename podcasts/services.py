@@ -72,6 +72,7 @@ def subscribe_user_by_urls(user, urls):
             result_dict[url] = True
 
     Subscription.objects.bulk_create([Subscription(user=user, podcast=podcast) for podcast in podcasts])
+    return result_dict
 
 
 def unsubscribe_user_from_podcast(user, podcast):

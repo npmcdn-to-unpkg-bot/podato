@@ -4,8 +4,9 @@ from graphene import relay, ObjectType
 import graphene
 
 from podcasts.models import Podcast, Episode
-from podcasts.services import get_podcast_by_url
+from podcasts.services import get_podcast_by_url, subscribe_user_by_urls
 
+from graphqlserver.schema.user_nodes import UserNode
 
 class PodcastNode(DjangoNode):
     class Meta:
@@ -25,6 +26,27 @@ class EpisodeNode(DjangoNode):
         filter_order_by = ['podcast', 'published', 'author', 'duration']
 
 
+class SubscribeMutation(relay.ClientIDMutation):
+
+    class Input:
+        feed_urls = graphene.List(graphene.String())
+
+    user = graphene.Field(UserNode)
+    success = graphene.List(graphene.String())
+
+    @classmethod
+    def mutate_and_get_payload(cls, input, info):
+        if not info.request_context.user:
+            raise Exception("You need to be logged in to subscribe to podcasts.")
+
+        urls = input["feed_urls"]
+        result_dict = subscribe_user_by_urls(info.request_context.user, urls)
+        for i in xrange(len(urls)):
+            urls[i] = result_dict[urls[i]]
+
+        return SubscribeMutation(user=UserNode(info.request_context.user), success=urls)
+
+
 class PodcastQuery(ObjectType):
     podcast = relay.NodeField(PodcastNode)
     episode = relay.NodeField(EpisodeNode)
@@ -34,6 +56,13 @@ class PodcastQuery(ObjectType):
 
     def resolve_podcast_by_url(self, args, info):
         return PodcastNode(get_podcast_by_url(args.get("url")))
+
+    class Meta:
+        abstract = True
+
+
+class PodcastMutations(ObjectType):
+    subscribe = graphene.Field(SubscribeMutation)
 
     class Meta:
         abstract = True
