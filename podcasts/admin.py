@@ -3,7 +3,7 @@ import gevent.pool
 import gevent
 
 
-from podcasts.models import Podcast, Episode, Category
+from podcasts.models import Podcast, Episode, Category, Subscription
 from podcasts.services import update_podcast
 
 
@@ -27,3 +27,4 @@ class PodcastAdmin(admin.ModelAdmin):
 admin.site.register(Category)
 admin.site.register(Podcast, PodcastAdmin)
 admin.site.register(Episode)
+admin.site.register(Subscription)

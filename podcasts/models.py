@@ -84,6 +84,9 @@ class Subscription(models.Model):
     subscribed = models.DateTimeField(auto_now_add=True, help_text="The date on which the user subscribed to this podcast")
     unsubscribed = models.DateTimeField(help_text="The date on which the user unsubscribed from this podcast.", null=True)
 
+    def __str__(self):
+        return "%s -> %s" % (self.user.username, self.podcast.title)
+
 
 
 
