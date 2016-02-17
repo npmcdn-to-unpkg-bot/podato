@@ -4,9 +4,10 @@ from graphene import relay, ObjectType
 import graphene
 
 from podcasts.models import Podcast, Episode
-from podcasts.services import get_podcast_by_url, subscribe_user_by_urls
+from podcasts.services import get_podcast_by_url, subscribe_user_by_urls, is_user_subscribed
 
 from graphqlserver.schema.user_nodes import UserNode
+
 
 class PodcastNode(DjangoNode):
     class Meta:
@@ -14,7 +15,12 @@ class PodcastNode(DjangoNode):
         filter_fields = ['title', 'author', 'url', 'tags']
         filter_order_by = ['author']
         only_fields = ("url", "link", "title", "description", "copyright", "author", "episodes", "image", "tags",
-                       "last_fetched", "subscribers")
+                       "last_fetched", "subscribers", "user_is_subscribed")
+
+    user_is_subscribed = graphene.BooleanField(description="Whether the current user is subscribed to this podcast")
+
+    def resolve_user_is_subscribed(self, args, info):
+        return is_user_subscribed(info.request_context.user, self.instance)
 
 
 class EpisodeNode(DjangoNode):
