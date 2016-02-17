@@ -9,7 +9,7 @@ class UserNode(DjangoNode):
         model = User
         filter_fields = ['username', 'email']
         filter_order_by = ['username', "id"]
-        only_fields = ("username", "email", "is_staff", "date_joined", )
+        only_fields = ("username", "email", "is_staff", "date_joined", "subscriptions")
 
 
 class UserQuery(ObjectType):

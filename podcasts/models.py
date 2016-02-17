@@ -43,6 +43,8 @@ class Podcast(models.Model):
     warnings = SeparatedValuesField(max_length=200, blank=True, null=True)
     language = models.CharField(max_length=20, blank=True, null=True)
 
+    subscribers = models.ManyToManyField(to=User, through="Subscription", related_name="subscriptions")
+
     objects = PodcastManager()
 
     def __str__(self):
@@ -79,7 +81,7 @@ class Subscription(models.Model):
     subscription isn't deleted, but rather, the unssubscribed field is set. So to get a list of all podcasts the user is
     currently subscribed to, get all subscriptions whose unsubscribed field is None."""
 
-    user = models.ForeignKey(User, on_delete=models.CASCADE, blank=False, related_name="subscriptions")
+    user = models.ForeignKey(User, on_delete=models.CASCADE, blank=False, related_name="subscription_objs")
     podcast = models.ForeignKey(Podcast, related_name="subscriptions")
     subscribed = models.DateTimeField(auto_now_add=True, help_text="The date on which the user subscribed to this podcast")
     unsubscribed = models.DateTimeField(help_text="The date on which the user unsubscribed from this podcast.", null=True)
