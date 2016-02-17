@@ -341,10 +341,16 @@ def test_get_subscribed_episodes_omits_unsubscribed(db):
     """Test that get_subscribed_episodes omits episodes of podcasts the user has unsubscribed from"""
     user = get_valid_user()
     user.save()
+    # the podcast the user unsubscribes from.
     podcast1 = get_valid_podcast_model("http://example.com/feed1", episodes=4)
+    # the podcast the user is subscribed to.
     podcast2 = get_valid_podcast_model("http://example.com/feed2", episodes=4)
+    # the podcast the user has never subscribed to.
+    podcast3 = get_valid_podcast_model("http://example.com/feed3", episodes=4)
     podcast1.save()
     podcast2.save()
+    podcast3.save()
+    user.subscription_objs.create(podcast=podcast1, unsubscribed=datetime.datetime.now())
     user.subscription_objs.create(podcast=podcast2)
     _published = lambda x: x.published
 
