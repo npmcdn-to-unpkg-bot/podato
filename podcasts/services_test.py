@@ -2,6 +2,7 @@ from mock import Mock
 
 import datetime
 import freezegun
+import random
 
 from django.contrib.auth.models import User
 from podcasts import models
@@ -11,8 +12,9 @@ from podcasts.parser import parsed_podcasts
 
 FEED_URL = "http://example.com/feed.xml"
 
-def get_valid_podcast_model(url=FEED_URL):
-    return models.Podcast(
+
+def get_valid_podcast_model(url=FEED_URL, episodes=0):
+    podcast = models.Podcast(
         url=url,
         link="http://example.com/podcast",
         title="example feed",
@@ -20,6 +22,16 @@ def get_valid_podcast_model(url=FEED_URL):
         description="A podcast about examples",
         last_fetched=datetime.datetime.now()
     )
+    for i in xrange(episodes):
+        podcast.episodes.create(
+            guid=url+"feed-%s" % i,
+            podcast=podcast,
+            title="e%s" %i,
+            published=datetime.datetime.utcnow() - datetime.timedelta(days=random.randint(1, 50)),
+            enclosure_url=url + "file.mp3",
+            enclosure_type="audio/mp3"
+        )
+    return podcast
 
 
 def test_get_podcast_by_url_retrieves_model(monkeypatch):
@@ -304,3 +316,40 @@ def test_subscribe_user_by_urls_previously_unsubscribed(db):
     services.subscribe_user_by_urls(user, [url])
 
     assert len(user.subscription_objs.all()) == 2
+
+
+def test_get_subscribed_episodes(db):
+    """Test that get_subscribed_episodes returns all episodes of podcasts the user is subscribed to"""
+    user = get_valid_user()
+    user.save()
+    podcast1 = get_valid_podcast_model("http://example.com/feed1", episodes=4)
+    podcast2 = get_valid_podcast_model("http://example.com/feed2", episodes=4)
+    podcast1.save()
+    podcast2.save()
+    user.subscription_objs.create(podcast=podcast1)
+    user.subscription_objs.create(podcast=podcast2)
+    _published = lambda x: x.published
+
+    result = tuple(services.get_subscribed_episodes(user))
+
+    checks = tuple(sorted(list(podcast1.episodes.all()) + list(podcast2.episodes.all()), key=_published)[::-1])
+
+    assert result == checks
+
+
+def test_get_subscribed_episodes_omits_unsubscribed(db):
+    """Test that get_subscribed_episodes omits episodes of podcasts the user has unsubscribed from"""
+    user = get_valid_user()
+    user.save()
+    podcast1 = get_valid_podcast_model("http://example.com/feed1", episodes=4)
+    podcast2 = get_valid_podcast_model("http://example.com/feed2", episodes=4)
+    podcast1.save()
+    podcast2.save()
+    user.subscription_objs.create(podcast=podcast2)
+    _published = lambda x: x.published
+
+    result = tuple(services.get_subscribed_episodes(user))
+
+    checks = tuple(sorted(list(podcast2.episodes.all()), key=_published)[::-1])
+
+    assert result == checks

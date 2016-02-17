@@ -2,7 +2,7 @@ from django.db import models, transaction
 from gevent.pool import Pool
 import datetime
 
-from podcasts.models import Podcast, Subscription
+from podcasts.models import Podcast, Episode, Subscription
 from podcasts.fetcher import fetcher
 from podcasts.errors import InvalidFeed
 
@@ -86,3 +86,8 @@ def unsubscribe_user_from_podcast(user, podcast):
 def is_user_subscribed(user, podcast):
     """Returns whether the user is subscribed to the given podcast."""
     return user.subscription_objs.filter(podcast=podcast, unsubscribed=None).count() > 0
+
+
+def get_subscribed_episodes(user):
+    """Returns a queryset for all the episodes from podcasts the suer is subscribed to, in reverse publishing order."""
+    return Episode.objects.filter(podcast__in=user.subscriptions.filter(subscriptions__unsubscribed__isnull=True)).order_by("-published")
