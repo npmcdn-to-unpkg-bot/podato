@@ -33,7 +33,7 @@ class EpisodeNode(DjangoNode):
         filter_order_by = ['podcast', 'published', 'author', 'duration']
 
 
-class SubscribeMutation(relay.ClientIDMutation):
+class Subscribe(relay.ClientIDMutation):
 
     class Input:
         feed_urls = graphene.List(graphene.String())
@@ -51,10 +51,10 @@ class SubscribeMutation(relay.ClientIDMutation):
         for i in xrange(len(urls)):
             urls[i] = result_dict[urls[i]]
 
-        return SubscribeMutation(user=UserNode(info.request_context.user), success=urls)
+        return Subscribe(user=UserNode(info.request_context.user), success=urls)
 
 
-class UnsubscribeMutation(relay.ClientIDMutation):
+class Unsubscribe(relay.ClientIDMutation):
     """Unsubscribe the current user from the podcast associated with the given podcast_url."""
 
     class Input:
@@ -73,7 +73,7 @@ class UnsubscribeMutation(relay.ClientIDMutation):
         podcast = get_podcast_by_url(input["podcast_url"])
         result = unsubscribe_user_from_podcast(user, podcast)
 
-        return UnsubscribeMutation(user=user, podcast=podcast, success=result)
+        return Unsubscribe(user=user, podcast=podcast, success=result)
 
 
 class PodcastQuery(ObjectType):
@@ -91,7 +91,7 @@ class PodcastQuery(ObjectType):
 
 
 class PodcastMutations(ObjectType):
-    subscribe = graphene.Field(SubscribeMutation)
-    unsubscribe = graphene.Field(UnsubscribeMutation)
+    subscribe = graphene.Field(Subscribe)
+    unsubscribe = graphene.Field(Unsubscribe)
     class Meta:
         abstract = True
