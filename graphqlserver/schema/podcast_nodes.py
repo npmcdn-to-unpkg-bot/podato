@@ -4,8 +4,7 @@ from graphene import relay, ObjectType
 import graphene
 
 from podcasts.models import Podcast, Episode
-from podcasts.services import get_podcast_by_url, subscribe_user_by_urls, is_user_subscribed
-
+from podcasts.services import get_podcast_by_url, subscribe_user_by_urls, is_user_subscribed, unsubscribe_user_from_podcast
 from graphqlserver.schema.user_nodes import UserNode
 
 
@@ -20,6 +19,8 @@ class PodcastNode(DjangoNode):
     user_is_subscribed = graphene.BooleanField(description="Whether the current user is subscribed to this podcast")
 
     def resolve_user_is_subscribed(self, args, info):
+        if not info.request_context.user.is_authenticated():
+            return None
         return is_user_subscribed(info.request_context.user, self.instance)
 
 
@@ -42,7 +43,7 @@ class SubscribeMutation(relay.ClientIDMutation):
 
     @classmethod
     def mutate_and_get_payload(cls, input, info):
-        if not info.request_context.user:
+        if not info.request_context.user.is_authenticated():
             raise Exception("You need to be logged in to subscribe to podcasts.")
 
         urls = input["feed_urls"]
@@ -51,6 +52,28 @@ class SubscribeMutation(relay.ClientIDMutation):
             urls[i] = result_dict[urls[i]]
 
         return SubscribeMutation(user=UserNode(info.request_context.user), success=urls)
+
+
+class UnsubscribeMutation(relay.ClientIDMutation):
+    """Unsubscribe the current user from the podcast associated with the given podcast_url."""
+
+    class Input:
+        podcast_url = graphene.StringField()
+
+    user = graphene.Field(UserNode)
+    podcast = graphene.Field(PodcastNode)
+    success = graphene.BooleanField()
+
+    @classmethod
+    def mutate_and_get_payload(cls, input, info):
+        user = info.request_context.user
+        if not user.is_authenticated():
+            raise Exception("You need to be logged in to unsubscribe from podcasts.")
+
+        podcast = get_podcast_by_url(input["podcast_url"])
+        result = unsubscribe_user_from_podcast(user, podcast)
+
+        return UnsubscribeMutation(user=user, podcast=podcast, success=result)
 
 
 class PodcastQuery(ObjectType):
@@ -69,6 +92,6 @@ class PodcastQuery(ObjectType):
 
 class PodcastMutations(ObjectType):
     subscribe = graphene.Field(SubscribeMutation)
-
+    unsubscribe = graphene.Field(UnsubscribeMutation)
     class Meta:
         abstract = True
