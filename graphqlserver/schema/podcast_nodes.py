@@ -38,7 +38,7 @@ class Subscribe(relay.ClientIDMutation):
     class Input:
         feed_urls = graphene.List(graphene.String())
 
-    user = graphene.Field(UserNode)
+    user = graphene.Field(UserNode, description="The user whose subscriptions got updated.")
     success = graphene.List(graphene.String())
 
     @classmethod
@@ -60,9 +60,9 @@ class Unsubscribe(relay.ClientIDMutation):
     class Input:
         podcast_url = graphene.StringField()
 
-    user = graphene.Field(UserNode)
-    podcast = graphene.Field(PodcastNode)
-    success = graphene.BooleanField()
+    user = graphene.Field(UserNode, description="The user whose subscriptions got updated.")
+    podcast = graphene.Field(PodcastNode, description="The podcast from which the user unsubscribed.")
+    success = graphene.BooleanField(description="Whether the operation was successful.")
 
     @classmethod
     def mutate_and_get_payload(cls, input, info):

@@ -16,7 +16,7 @@ class UserQuery(ObjectType):
     user = relay.NodeField(UserNode)
     all_users = DjangoFilterConnectionField(UserNode)
 
-    me = graphene.Field(UserNode)
+    me = graphene.Field(UserNode, description="The current user.")
 
     def resolve_me(self, args, info):
         """Returns the current user."""
