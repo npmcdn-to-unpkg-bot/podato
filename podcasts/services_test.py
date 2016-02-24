@@ -121,23 +121,6 @@ def test_subscribe_user_to_podcast_twice(transactional_db):
     assert len(user.subscription_objs.all()) == 1
 
 
-def test_resubscribe_user_to_podcast(transactional_db):
-    user = User(username="foo", password="monkey123", email="user@example.com")
-    user.save()
-    podcast = get_valid_podcast_model()
-    podcast.save()
-    now = datetime.datetime.now()
-    user.subscription_objs.create(podcast=podcast, unsubscribed=now)
-    future = now + datetime.timedelta(days=1)
-
-    with freezegun.freeze_time(future):
-        result = services.subscribe_user_to_podcast(user, podcast)
-
-        assert result == True
-        assert models.Subscription.objects.get(podcast=podcast, unsubscribed=None)\
-                   .subscribed.replace(tzinfo=None) == future
-
-
 def test_is_user_subscribed_with_not_subscribed_user(transactional_db):
     """Check is_user_subscribed returns False if the user is'nt subscribed."""
     user = get_valid_user()
@@ -163,33 +146,6 @@ def test_is_user_subscribed_with_subscribed_user(transactional_db):
     assert result == True
 
 
-def test_is_user_subscribed_with_unsubscribed_user(transactional_db):
-    """Check is_user_subscribed returns False if the user was previously subscribed, but is now unsubscribed."""
-    user = get_valid_user()
-    user.save()
-    podcast = get_valid_podcast_model()
-    podcast.save()
-    user.subscription_objs.create(podcast=podcast, unsubscribed=datetime.datetime.utcnow() + datetime.timedelta(days=1))
-
-    result = services.is_user_subscribed(user, podcast)
-
-    assert result == False
-
-
-def test_is_user_subscribed_with_resubscribed_user(transactional_db):
-    """Check is_user_subscribed returns True if the user had previously unsubscribed, but has re-subscribed."""
-    user = get_valid_user()
-    user.save()
-    podcast = get_valid_podcast_model()
-    podcast.save()
-    user.subscription_objs.create(podcast=podcast, unsubscribed=datetime.datetime.utcnow() + datetime.timedelta(days=1))
-    user.subscription_objs.create(podcast=podcast)
-
-    result = services.is_user_subscribed(user, podcast)
-
-    assert result == True
-
-
 def test_unsubscribe(transactional_db):
     """Test that the user is correctly unsubscribed"""
     user = get_valid_user()
@@ -197,13 +153,11 @@ def test_unsubscribe(transactional_db):
     podcast = get_valid_podcast_model()
     podcast.save()
     user.subscription_objs.create(podcast=podcast)
-    now = datetime.datetime.now()
 
-    with freezegun.freeze_time(now):
-        result = services.unsubscribe_user_from_podcast(user, podcast)
+    result = services.unsubscribe_user_from_podcast(user, podcast)
 
-        assert result == True
-        assert user.subscription_objs.get(podcast=podcast).unsubscribed.replace(tzinfo=None) == now
+    assert result == True
+    assert user.subscription_objs.filter(podcast=podcast).count() == 0
 
 
 def test_unsubscribe_user_not_subscribed(transactional_db):
@@ -304,20 +258,6 @@ def test_subscribe_user_by_urls_already_subscribed(db):
     assert len(user.subscription_objs.all()) == 1
 
 
-def test_subscribe_user_by_urls_previously_unsubscribed(db):
-    """Test that the user is re-subscribed if they were previously unsubscribed.."""
-    url = "http://example.com/feed"
-    podcast = get_valid_podcast_model(url)
-    podcast.save()
-    user = get_valid_user()
-    user.save()
-    user.subscription_objs.create(podcast=podcast, unsubscribed=datetime.datetime.now()+datetime.timedelta(days=1))
-
-    services.subscribe_user_by_urls(user, [url])
-
-    assert len(user.subscription_objs.all()) == 2
-
-
 def test_get_subscribed_episodes(db):
     """Test that get_subscribed_episodes returns all episodes of podcasts the user is subscribed to"""
     user = get_valid_user()
@@ -336,26 +276,3 @@ def test_get_subscribed_episodes(db):
 
     assert result == checks
 
-
-def test_get_subscribed_episodes_omits_unsubscribed(db):
-    """Test that get_subscribed_episodes omits episodes of podcasts the user has unsubscribed from"""
-    user = get_valid_user()
-    user.save()
-    # the podcast the user unsubscribes from.
-    podcast1 = get_valid_podcast_model("http://example.com/feed1", episodes=4)
-    # the podcast the user is subscribed to.
-    podcast2 = get_valid_podcast_model("http://example.com/feed2", episodes=4)
-    # the podcast the user has never subscribed to.
-    podcast3 = get_valid_podcast_model("http://example.com/feed3", episodes=4)
-    podcast1.save()
-    podcast2.save()
-    podcast3.save()
-    user.subscription_objs.create(podcast=podcast1, unsubscribed=datetime.datetime.now())
-    user.subscription_objs.create(podcast=podcast2)
-    _published = lambda x: x.published
-
-    result = tuple(services.get_subscribed_episodes(user))
-
-    checks = tuple(sorted(list(podcast2.episodes.all()), key=_published)[::-1])
-
-    assert result == checks

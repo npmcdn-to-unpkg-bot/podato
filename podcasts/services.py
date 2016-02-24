@@ -61,7 +61,7 @@ def subscribe_user_to_podcast(user, podcast):
 
 
 def subscribe_user_by_urls(user, urls):
-    subscribed_urls = [sub["podcast"] for sub in user.subscription_objs.filter(unsubscribed__isnull=True).values("podcast")]
+    subscribed_urls = [sub["podcast"] for sub in user.subscription_objs.values("podcast")]
     podcast_dict = get_multi_podcasts_by_url(urls)
     result_dict = {}
     podcasts = []
@@ -79,15 +79,14 @@ def subscribe_user_by_urls(user, urls):
 
 def unsubscribe_user_from_podcast(user, podcast):
     """Unsubscribe the user from the given podcast."""
-    return user.subscription_objs.filter(podcast=podcast, unsubscribed=None)\
-        .update(unsubscribed=datetime.datetime.utcnow()) > 0
+    return user.subscription_objs.filter(podcast=podcast).delete()[0] > 0
 
 
 def is_user_subscribed(user, podcast):
     """Returns whether the user is subscribed to the given podcast."""
-    return user.subscription_objs.filter(podcast=podcast, unsubscribed=None).count() > 0
+    return user.subscription_objs.filter(podcast=podcast).count() > 0
 
 
 def get_subscribed_episodes(user):
     """Returns a queryset for all the episodes from podcasts the suer is subscribed to, in reverse publishing order."""
-    return Episode.objects.filter(podcast__in=user.subscriptions.filter(subscriptions__unsubscribed__isnull=True)).order_by("-published")
+    return Episode.objects.filter(podcast__in=user.subscriptions.all()).order_by("-published")

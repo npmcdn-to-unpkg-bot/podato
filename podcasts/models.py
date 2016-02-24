@@ -87,7 +87,6 @@ class Subscription(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, blank=False, related_name="subscription_objs")
     podcast = models.ForeignKey(Podcast, related_name="subscriptions")
     subscribed = models.DateTimeField(auto_now_add=True, help_text="The date on which the user subscribed to this podcast")
-    unsubscribed = models.DateTimeField(help_text="The date on which the user unsubscribed from this podcast.", null=True)
 
     def __str__(self):
         return "%s -> %s" % (self.user.username, self.podcast.title)
