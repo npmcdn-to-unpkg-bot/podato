@@ -1,14 +1,14 @@
 import json
 import urllib
 
-from django.shortcuts import render
-from django.contrib.auth import get_user
+from django.shortcuts import render, redirect
 from django.core.urlresolvers import reverse
+from django.contrib.auth import logout
 from django.conf import settings
 
 
 def index(request):
-    user = get_user(request)
+    user = request.user
 
     return render(request, "index.html", {
         "global_data": json.dumps({
@@ -22,6 +22,13 @@ def index(request):
             })
         })
     })
+
+
+def logout_user(request):
+    """Log out the current user."""
+    next = request.GET.get("next") or "/"
+    logout(request)
+    return redirect(next)
 
 
 def email_confirmation_sent(request):
