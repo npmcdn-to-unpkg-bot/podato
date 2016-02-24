@@ -22,7 +22,7 @@ class Category(models.Model):
 class PodcastManager(models.Manager):
     """A custom manager for the Podcast model class, which ensures that it has a subscriber_count field."""
     def get_queryset(self):
-        return super(PodcastManager, self).get_queryset().annotate(subscriber_count=models.Count("subscriptions"))
+        return super(PodcastManager, self).get_queryset().annotate(subscriber_count=models.Count("subscribers"))
 
 
 class Podcast(models.Model):
