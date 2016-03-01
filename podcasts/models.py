@@ -46,6 +46,7 @@ class Podcast(models.Model):
     language = models.CharField(max_length=20, blank=True, null=True, help_text="The language the podcast is in.")
 
     subscribers = models.ManyToManyField(to=User, through="Subscription", related_name="subscriptions", help_text="The users who subscribe to this podcast.")
+    recommending_users = models.ManyToManyField(to=User, through="PodcastRecommendation", related_name="recommended_podcasts")
 
     objects = PodcastManager()
 
@@ -73,6 +74,8 @@ class Episode(models.Model):
     published = models.DateTimeField(help_text="The moment this episode was published.")
     warnings = SeparatedValuesField(max_length=200, blank=True, null=True, help_text="Any warnings generated while fetching.")
 
+    recommending_users = models.ManyToManyField(to=User, through="EpisodeRecommendation", related_name="recommended_episodes")
+
     def __str__(self):
         return self.title
 
@@ -90,6 +93,22 @@ class Subscription(models.Model):
 
     def __str__(self):
         return "%s -> %s" % (self.user.username, self.podcast.title)
+
+
+class PodcastRecommendation(models.Model):
+    """Represents a user recommending a podcast."""
+
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="recommendation_objs")
+    podcast = models.ForeignKey(Podcast, on_delete=models.CASCADE, related_name="recommendation_objs")
+    recommended = models.DateTimeField(auto_now_add=True)
+
+
+class EpisodeRecommendation(models.Model):
+    """Represents a user recommending an episode."""
+
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="episode_recommendation_objs")
+    episode = models.ForeignKey(Episode, on_delete=models.CASCADE, related_name="recommendation_objs")
+    recommended = models.DateTimeField(auto_now_add=True)
 
 
 class Comment(models.Model):
