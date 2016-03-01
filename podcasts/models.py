@@ -92,5 +92,12 @@ class Subscription(models.Model):
         return "%s -> %s" % (self.user.username, self.podcast.title)
 
 
+class Comment(models.Model):
+    """A comment on an episode."""
 
+    episode = models.ForeignKey(Episode, null=False, related_name="comments", help_text="The episode the user is commenting on.")
+    author = models.ForeignKey(User, null=False, related_name="comments", help_text="The user who left the comment")
+    created = models.DateTimeField(auto_now_add=True, help_text="The moment the comment was created.")
+    body = models.TextField(help_text="The comment's body text", null=False, blank=False)
+    time_in_episode = models.IntegerField(help_text="The point in the episode when the comment was made", null=True, blank=True)
 
