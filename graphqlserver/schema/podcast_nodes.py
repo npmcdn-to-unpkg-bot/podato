@@ -9,6 +9,7 @@ from graphqlserver.schema.user_nodes import UserNode
 
 
 class PodcastNode(DjangoNode):
+    """A GraphQL object that represents a podcast."""
     class Meta:
         model = Podcast
         filter_fields = ['title', 'author', 'url', 'tags']
@@ -25,6 +26,7 @@ class PodcastNode(DjangoNode):
 
 
 class EpisodeNode(DjangoNode):
+    """A GraphQL object that represents a podcast episode"""
     class Meta:
         model = Episode
         only_fields = ['podcast', 'link', 'title', 'subtitle', 'description', 'content', 'explicit', 'author',
@@ -34,7 +36,7 @@ class EpisodeNode(DjangoNode):
 
 
 class Subscribe(relay.ClientIDMutation):
-
+    """A GraphQL operation to subscribe to a podcast"""
     class Input:
         feed_urls = graphene.List(graphene.String())
 
@@ -55,7 +57,7 @@ class Subscribe(relay.ClientIDMutation):
 
 
 class Unsubscribe(relay.ClientIDMutation):
-    """Unsubscribe the current user from the podcast associated with the given podcast_url."""
+    """A GraphQL operation to Unsubscribe the current user from the podcast associated with the given podcast_url."""
 
     class Input:
         podcast_url = graphene.StringField()
@@ -77,6 +79,7 @@ class Unsubscribe(relay.ClientIDMutation):
 
 
 class PodcastQuery(ObjectType):
+    """A GraphQL that combines all GraphQL information about podcasts."""
     podcast = relay.NodeField(PodcastNode)
     episode = relay.NodeField(EpisodeNode)
     all_podcasts = DjangoFilterConnectionField(PodcastNode)
@@ -91,6 +94,7 @@ class PodcastQuery(ObjectType):
 
 
 class PodcastMutations(ObjectType):
+    """A class that contains all GraphQL mutations related to podcasts."""
     subscribe = graphene.Field(Subscribe)
     unsubscribe = graphene.Field(Unsubscribe)
     class Meta:

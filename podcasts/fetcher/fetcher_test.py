@@ -7,6 +7,7 @@ import freezegun
 from podcasts.parser.parser_test import read_test_file
 from podcasts.errors import InvalidFeed
 
+
 FEED_URL = "http://example.com/podcast/feed.xml"
 
 
@@ -20,6 +21,7 @@ def test_fetcher_returns_parsed_feed(mock_requests):
 
 
 def test_fetcher_sets_url(mock_requests):
+    """Test that the fetcher correctly sets the podcast's url."""
     mock_requests.get(FEED_URL, text=read_test_file("canvas"))
 
     result = fetch(FEED_URL)
@@ -28,6 +30,7 @@ def test_fetcher_sets_url(mock_requests):
 
 
 def test_fetcher_sets_last_fetched(mock_requests):
+    """Test that the fetcher correctly updates the podcast's last_fetched property."""
     mock_requests.get(FEED_URL, text=read_test_file("canvas"))
 
     now = datetime.datetime.now()

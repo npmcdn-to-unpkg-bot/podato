@@ -5,6 +5,7 @@ from graphene import relay, ObjectType
 import graphene
 
 class UserNode(DjangoNode):
+    """A GraphQL object that represents a user"""
     class Meta:
         model = User
         filter_fields = ['username', 'email']
@@ -13,6 +14,7 @@ class UserNode(DjangoNode):
 
 
 class UserQuery(ObjectType):
+    """A GraphQL object that forms the starting point for all user-related queries in GraphQL"""
     user = relay.NodeField(UserNode)
     all_users = DjangoFilterConnectionField(UserNode)
 

@@ -3,6 +3,7 @@ from django.db import transaction
 
 from podcasts.models import Podcast, Episode, Category
 
+
 #warning constants
 W_NO_IMAGE = "W_NO_IMAGES"
 W_NO_AUTHOR = "W_NO_AUTHOR"
@@ -14,6 +15,7 @@ W_NO_GUID = "W_NO_GUID"
 W_NO_DURATION = "W_NO_DURATION"
 W_NO_EPISODE_AUTHOR = "W_NO_EPISODE_AUTHOR"
 W_DUPLICATE_GUID = "W_DUPLICATE_GUID"
+
 
 def get_warning_message(warning, episode=None):
     """Get the warning message for e given warning constant. If the warning is about a specific episode, pass it in."""
@@ -38,7 +40,11 @@ def get_warning_message(warning, episode=None):
 
 
 class ParsedPodcast(object):
-    """The podcast class represents a podcast."""
+    """The ParsedPodcast class represents the result of parsing a podcast feed.
+
+    This class exists to distinguish between the podcast's data as represented by the feed, and the data we store in the
+    database. In the database, data is often structured and/or represented differently.
+    """
 
     def __init__(self, url=None, link=None, title=None, description=None, author=None, image=None, copyright=None,
                  tags=None, language=None, last_fetched=None, categories=None, owner=None, episodes=None,
@@ -62,6 +68,7 @@ class ParsedPodcast(object):
 
 
     def validate(self):
+        """Validates the data stored in the feed. This populates this.warnings"""
         if self.image is None:
             self.warnings.append(W_NO_IMAGE)
         if self.author is None:
@@ -130,7 +137,7 @@ class ParsedPodcast(object):
 
 
 class ParsedEpisode(object):
-    """The Episode class represents a podcast episode. I"""
+    """The ParsedEpisode class represents a podcast episode as parsed from a podcast feed."""
     def __init__(self, guid=None, link=None, title=None, subtitle=None, summary=None, description=None, content=None, image=None, author=None, duration=None,
                  published=None, explicit=None, enclosure=None):
         self.guid = guid
@@ -165,6 +172,10 @@ class ParsedEpisode(object):
         self.guid = self.guid or self.link
 
     def save_to_db(self, podcast):
+        """Converts this ParsedEpisode object to an Episode object to be stored in the db.
+
+        You probably don't want to call this directly, but rather call save_to_db on the podcast. That methods ensures
+        that all a podcast's episodes are correctly saved to the database."""
         episode_obj, _ = Episode.objects.update_or_create(guid=self.guid, defaults={
             "podcast": podcast,
             "link": self.link,

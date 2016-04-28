@@ -6,6 +6,7 @@ from podcasts.models import Podcast, Episode, Subscription
 from podcasts.fetcher import fetcher
 from podcasts.errors import InvalidFeed
 
+
 def _fetch_podcast(url):
     """Fetches the podcast and stores it in the database.
 
@@ -43,7 +44,6 @@ def get_multi_podcasts_by_url(urls):
     pool.join(timeout=30)
 
     return podcast_dict
-
 
 
 def update_podcast(podcast):

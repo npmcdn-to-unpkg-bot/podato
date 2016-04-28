@@ -9,6 +9,7 @@ from social.pipeline.partial import partial
 
 
 def send_confirmation_email(strategy, backend, code):
+    """Sends the email that's used to confirm that the email address belongs to the user who signed up."""
     url = strategy.build_absolute_uri(
         reverse('social:complete', args=(backend.name,), )
     ) + '?verification_code=' + code.code
@@ -25,6 +26,7 @@ def send_confirmation_email(strategy, backend, code):
 
 
 class BasicUserInfoForm(forms.Form):
+    """A form that's used to get the essential details needed for a user to sign up."""
     username = forms.CharField(max_length=30, min_length=1, required=True, label="Username")
     email = forms.EmailField(label="Email address", required=True)
 
@@ -55,4 +57,5 @@ def ensure_required_data(backend, strategy, details=None, is_new=True, *args, **
 
 
 def show_toolbar(request):
+    """A function to determine whether to show the debug toolbar."""
     return settings.DEBUG

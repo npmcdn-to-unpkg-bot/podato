@@ -8,7 +8,11 @@ from xml.etree.ElementTree import Element
 from parser import parse_feed, _parse_duration, _parse_categories
 
 def read_test_file(filename):
+    """Reads data for testing from the test_data directory."""
     test_dir = os.path.join(os.path.dirname(__file__), "test_data")
+    # I had some trouble with unicode characters not being treaded correctly with the X<ML feed parser in tests.
+    # That's why I'm using codecs.open. I was so foolish not to properly comment how I got to this solution. So if anything
+    # goes wrong here in the future, please update this comment to properly describe how you solved it.
     return codecs.open(os.path.join(test_dir, filename + ".xml"), encoding="utf-8").read()
 
 def test_canvas():
@@ -61,12 +65,14 @@ def test_whats_the_point():
 
 
 def test_parse_duration():
+    """Test that parse_duration properly parses all supported formats"""
     assert _parse_duration("1337") == 1337
     assert _parse_duration("22:17") == 1337
     assert _parse_duration("3:42:17") == 13337
 
 
 def test_categories():
+    """Test that the parser properly structures categories"""
     parent = Element("foo", attrib={"text":"parent"})
     child1 = Element("foo", attrib={"text":"child1"})
     child2 = Element("foo", attrib={"text":"child2"})

@@ -10,6 +10,7 @@ from podcasts.parser.parsed_podcasts import ParsedPodcast, ParsedEpisode, Enclos
 
 ITUNES_NS = "{http://www.itunes.com/dtds/podcast-1.0.dtd}"
 
+
 def parse_feed(feed_str):
     """Parses a feed, and returns a Podcast instance"""
     podcast = ParsedPodcast()
@@ -97,6 +98,7 @@ def _parse_categories(element):
 
 
 def _parse_person(tag):
+    """Parse a tags like itunes:owne from a feed into a Person object.."""
     name = None
     email = None
     for child in tag:
@@ -109,7 +111,7 @@ def _parse_person(tag):
 
 
 def _parse_date(txt):
-    """This parses an RFC 2822 timestamp, and converts it to a datetime object in utc."""
+    """Parse an RFC 2822 timestamp, and converts it to a datetime object in utc."""
     datetime_tuple = parsedate_tz(txt)
     if datetime_tuple[9] == 0:
         return datetime.datetime(*datetime_tuple[:6])
@@ -121,11 +123,13 @@ def _parse_date(txt):
 
 
 def _parse_enclosure(element):
+    """Parse the enclosure element into an Enclosure object."""
     enclosure = Enclosure(url=element.attrib.get("url"), type=element.attrib.get("type"),
                           length=int(element.attrib.get("length", 0)))
     return enclosure
 
 def _parse_duration(txt):
+    """Parse the itunes:duration tag into an integer number of seconds."""
     parts = txt.split(":")
     total = 0
     # Go through parts from right to left.

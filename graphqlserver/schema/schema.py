@@ -8,15 +8,19 @@ from podcast_nodes import PodcastQuery, PodcastMutations
 
 
 class Query(UserQuery, PodcastQuery):
+    """The root object for all GraphQL queries."""
     node = relay.NodeField()
 
 
 class Mutation(PodcastMutations):
+    """The root object for all GraphQL mutations."""
     pass
+
 
 plugins = []
 if settings.DEBUG:
     plugins = [DjangoDebugPlugin()]
+
 
 schema = Schema(name="Podato Schema",
                 executor=Executor([GeventExecutionMiddleware()]),

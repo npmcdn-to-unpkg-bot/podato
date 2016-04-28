@@ -1,6 +1,8 @@
 from django.db import models
 
+
 class SeparatedValuesField(models.TextField):
+    """A field that stores strings separated by some character (usually ','). The value is returned as a list."""
     __metaclass__ = models.SubfieldBase
 
     def __init__(self, *args, **kwargs):
