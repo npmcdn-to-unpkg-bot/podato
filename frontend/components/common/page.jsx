@@ -1,4 +1,4 @@
-var React = require("react");
+import React from "React";
 
 var Page = React.createClass({
     render(){
@@ -6,4 +6,4 @@ var Page = React.createClass({
     }
 });
 
-module.exports = Page;
+export default Page;

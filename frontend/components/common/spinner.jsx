@@ -1,4 +1,4 @@
-const React = require("react");
+import React from "react";
 
 const Spinner = React.createClass({
     render(){
@@ -8,4 +8,4 @@ const Spinner = React.createClass({
     }
 });
 
-module.exports = Spinner;
+export default Spinner;

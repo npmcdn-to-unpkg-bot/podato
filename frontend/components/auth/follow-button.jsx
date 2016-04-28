@@ -1,13 +1,9 @@
-const React = require("react");
-const ListenerMixin = require("alt/mixins/ListenerMixin");
+import React from "react"
 
-const UserActions = require("../../actions/user-actions.js");
+import Spinner from "../common/spinner.jsx";
 
-const CurrentUserStore = require("../../stores/current-user-store");
-const Spinner = require("../common/spinner.jsx");
-
+//TODO re-implement this to use GraphQL operations.
 const FollowButton = React.createClass({
-    mixins: [ListenerMixin],
     componentWillMount(){
         window.WrongComponent = this;
         window.ListenerMixin = ListenerMixin;
@@ -57,4 +53,4 @@ const FollowButton = React.createClass({
     }
 });
 
-module.exports = FollowButton;
+export default FollowButton;

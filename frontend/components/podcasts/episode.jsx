@@ -1,12 +1,11 @@
-const React = require("react");
-const Image = require("../common/image.jsx");
-const ListenerMixin = require("alt/mixins/ListenerMixin");
+import React from "react";
+import {connect} from "react-redux";
 
-const PlaybackActions = require("../../actions/playback-actions");
-const PlaybackStore = require("../../stores/playback-store");
+import Image from "../common/image.jsx";
+
+import {playEpisode, resume, pause} from "../../actions/playback-actions"
 
 var Episode = React.createClass({
-    mixins: [ListenerMixin],
     render(){
         var published = new Date(this.props.episode.published);
         return (
@@ -25,24 +24,17 @@ var Episode = React.createClass({
             </div>
         )
     },
-    getInitialState(){
-        return this.makeState();
-    },
-    componentWillMount(){
-        this.listenTo(PlaybackStore, this.storeDidChange);
-    },
-    storeDidChange(){
-        this.setState(this.makeState());
-    },
     makeState(){
-        const playingEpisode = PlaybackStore.getState().currentEpisode;
         return {
             episodePlaying: playingEpisode && playingEpisode.guid == this.props.episode.guid,
             playing: PlaybackStore.getState().playing
         };
     },
+    isEpisodePlaying(){
+        return this.props.playback.episode.guid == this.props.episode.guid;
+    },
     getPlayButton(){
-        if(this.state.episodePlaying && this.state.playing){
+        if(this.isEpisodePlaying() && this.props.playing){
             return <a onClick={this.pause}><i className="el el-pause"></i> pause</a>
         }else{
             return <a onClick={this.play}><i className="el el-play"></i> play</a>
@@ -50,18 +42,18 @@ var Episode = React.createClass({
     },
 
     play(){
-        if(this.state.episodePlaying){
-            PlaybackActions.resume();
+        if(this.isEpisodePlaying){
+            resume();
         }else{
-            PlaybackActions.playEpisode(this.props.episode);
+            playEpisode(this.props.episode);
         }
         return false;
     },
 
     pause(){
-        PlaybackActions.pause();
+        pause();
         return false;
     }
 });
 
-module.exports = Episode;
+export default connect((state) => {playback: state.get("playback").toObject()})(Episode);

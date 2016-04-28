@@ -1,20 +1,11 @@
-const React = require("react");
-const Link = require("react-router").Link;
-const ListenerMixin = require("alt/mixins/ListenerMixin");
+import React from "react";
+import {Link} from "react-router";
 
-const SearchBox = require("./search-box.jsx");
-
-const CurrentUserStore = require("../../stores/current-user-store");
-const AuthActions = require("../../actions/auth-actions");
-
+import SearchBox from "./search-box.jsx"
 
 const Navbar = React.createClass({
-    mixins: [ListenerMixin],
-    componentWillMount(){
-        this.listenTo(CurrentUserStore, this.storeDidChange);
-    },
     render(){
-        var logout = ""
+        var logout = "";
         if(this.state.user){
             logout = <a className="col col-1" onClick={AuthActions.logout} className="button button-red">Log out</a>
         }
@@ -32,11 +23,8 @@ const Navbar = React.createClass({
         )
     },
     getInitialState(){
-        return {user: CurrentUserStore.getState().currentUser}
-    },
-    storeDidChange(){
-        this.setState({user: CurrentUserStore.getState().currentUser})
+        return {} //TODO reimplement this with GraphQL
     }
 });
 
-module.exports = Navbar;
+export default Navbar;

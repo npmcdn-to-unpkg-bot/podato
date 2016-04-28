@@ -1,5 +1,5 @@
-const React = require("react");
-const ReactDOM = require("react-dom");
+import React from "react";
+import ReactDOM from "react-dom";
 
 const CheckboxList = React.createClass({
     render(){
@@ -21,7 +21,7 @@ const CheckboxList = React.createClass({
         );
     },
     getValues(){
-        var values = {}
+        var values = {};
         for(var i=0; i<this.props.data.length; i++){
             var d = this.props.data[i];
             values[d.key] = ReactDOM.findDOMNode(this.refs[d.key]).checked;
@@ -30,4 +30,4 @@ const CheckboxList = React.createClass({
     }
 });
 
-module.exports = CheckboxList;;
+export default CheckboxList;

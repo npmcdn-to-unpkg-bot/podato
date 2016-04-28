@@ -1,6 +1,6 @@
-const React = require("react");
-const Navbar = require("./navbar/navbar.jsx");
-const Playbar = require("./playbar/playbar.jsx");
+import React from "react";
+import Navbar from "./navbar/navbar.jsx";
+import Playbar from "./playbar/playbar.jsx";
 
 const App = React.createClass({
     render() {
@@ -16,4 +16,4 @@ const App = React.createClass({
     }
 });
 
-module.exports = App
+export default App

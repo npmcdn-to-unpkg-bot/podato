@@ -1,21 +1,17 @@
-const React = require("react");
-const ReactDOM = require('react-dom');
-const Link = require("react-router").Link;
-const ListenerMixin = require("alt/mixins/ListenerMixin");
+import React from "react";
+import ReactDOM from  "react-dom";
+import {connect} from "react-redux";
+import {Link} from "react-router";
 
-const SearchActions = require("../../actions/search-actions");
-const SearchStore = require("../../stores/search-store");
+import SearchResults from "./search-results.jsx";
+import {search} from "../../actions/search-actions";
 
-const SearchResults = require("./search-results.jsx");
-
+//todo Extract the div and input into a SearchInput component, so this can purely be a container.
 const SearchBox = React.createClass({
-    mixins: [ListenerMixin],
-    componentWillMount(){
-        this.listenTo(SearchStore, this.storeDidChange);
-    },
     render(){
-        const showResults = ((this.state.focus && this.state.results !== null) || this.state.fetching);
-        const results = showResults ? <SearchResults results={this.state.results} fetching={this.state.fetching} resultClicked={this.resultClicked} /> : null;
+        const showResults = ((this.state.focus && this.props.results != null) || this.props.loading);
+        const results = showResults ? <SearchResults results={this.props.results} fetching={this.props.loading} resultClicked={this.resultClicked} /> : null;
+        //TODO move blur handler to the div, so that focussing on the search results doesn't hide them.
         return (
             <div {...this.props} style={{padding:"0.5rem"}}>
                 <input type="search" name="search" style={{height:"1.5rem", width:"100%"}} placeholder="Find great podcasts." ref="input"
@@ -26,39 +22,21 @@ const SearchBox = React.createClass({
     },
     getInitialState(){
         return {
-            query: "",
-            results: null,
-            changedSinceLastFetch: false,
-            focus: false,
-            fetching: false
+            focus: false
         }
     },
     focus(){
         this.setState({focus: true});
     },
     blur(){
-        setTimeout( () => this.setState({focus: false, results: null}));
+        //TODO I don't remember why I used setTimeout here. I probably should have left a comment explaining why.
+        //It might be useful to experiment with this, and see what happens when it is removed.
+        setTimeout( () => this.setState({focus: false}));
     },
     change(){
         const query = ReactDOM.findDOMNode(this.refs.input).value.trim();
-        this.setState({query: query});
         if(query.length > 3){
-            if(!this.state.fetching){
-                SearchActions.search(query);
-                this.setState({fetching: true});
-            }else{
-                this.setState({changedSinceLastFetch: true});
-            }
-        }
-    },
-    storeDidChange(){
-        const results = SearchStore.getResults();
-        this.setState({results: results});
-        if(this.state.changedSinceLastFetch){
-            SearchActions.search(this.state.query);
-            this.setState({changedSinceLastFetch: false});
-        }else{
-            this.setState({fetching: false})
+            search(query);
         }
     },
     resultClicked(res){
@@ -67,4 +45,4 @@ const SearchBox = React.createClass({
     }
 });
 
-module.exports = SearchBox;
+export default connect((state) => state.get("search").toObject())(SearchBox);

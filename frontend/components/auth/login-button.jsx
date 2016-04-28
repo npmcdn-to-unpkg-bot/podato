@@ -1,6 +1,4 @@
-const React = require("react");
-
-const AuthActions = require("../../actions/auth-actions");
+import React from "react";
 
 const LoginButton = React.createClass({
     render(){
@@ -11,8 +9,8 @@ const LoginButton = React.createClass({
     },
     login(e){
         e.preventDefault();
-        AuthActions.login(this.props.authProvider.toLowerCase());
+        //TODO log the user in.
     }
 });
 
-module.exports = LoginButton;
+export default LoginButton;

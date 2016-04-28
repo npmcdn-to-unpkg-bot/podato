@@ -1,7 +1,9 @@
 import React from 'react';
 import {render} from 'react-dom';
 import {Router, Route, IndexRoute, browserHistory } from 'react-router'
+import {provider} from 'react-redux';
 
+import store from "./store";
 
 const App = require("./components/app.jsx");
 const Home = require("./components/pages/home.jsx");
@@ -19,8 +21,9 @@ const routes = (
     </Router>
 );
 
-window.ReactRouter = ReactRouter;
+//wrap them with the react-redux provider
+const root = (<Provider store={store}>routes</Provider>);
 
 docReady(() => {
-    ReactDOM.render(routes, document.getElementById("app"));
+    ReactDOM.render(root, document.getElementById("app"));
 });

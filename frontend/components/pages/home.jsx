@@ -1,19 +1,12 @@
-const React = require("react");
-const ListenerMixin = require("alt/mixins/ListenerMixin");
+import React from "react";
 
-const LoginButton = require("../auth/login-button.jsx");
-const PodcastGrid = require("../podcasts/podcast-grid.jsx");
-const ImportButton = require("../podcasts/import-button.jsx");
-const Page = require("../common/page.jsx");
+import LoginButton from "../auth/login-button.jsx"
+import PodcastGrid from "../podcasts/podcast-grid.jsx";
+import ImportButton from "../podcasts/import-button.jsx";
+import Page from "../common/page.jsx";
 
-const CurrentUserStore = require("../../stores/current-user-store");
-const PopularPodcastsStore = require("../../stores/popular-podcasts-store");
-const SubscriptionsStore = require("../../stores/subscriptions-store");
-const PodcastActions = require("../../actions/podcast-actions");
-
-
+//todo rewrite this to use GraphQL
 const Home = React.createClass({
-    mixins: [ListenerMixin],
     render(){
         var auth = this.getAuthButtons();
         var subscriptions = this.getSubscriptionsGrid();
@@ -61,38 +54,9 @@ const Home = React.createClass({
             ]
         }
     },
-    componentWillMount() {
-        PodcastActions.fetchPopularPodcasts();
-        this.listenTo(CurrentUserStore, this.storeDidChange);
-        this.listenTo(PopularPodcastsStore, this.storeDidChange);
-        this.listenTo(SubscriptionsStore, this.storeDidChange);
-    },
-    componentWillReceiveProps() {
-        if(CurrentUserStore.getCurrentUser != null){
-            PodcastActions.fetchSubscriptions("me");
-        }
-    },
     getInitialState(){
         return {authState: null, popularPodcasts: [], userSubscriptions: []};
-    },
-    storeDidChange(){
-        var authState = null;
-        if(CurrentUserStore.getState().currentUser == null){
-            if (CurrentUserStore.getLoggingIn()) {
-                authState = "progress";
-            }
-        }else{
-            authState = "done";
-        }
-        if (this.state.authState != "done" && authState == "done"){ //If the user has just logged in,
-            PodcastActions.fetchSubscriptions("me");                //Fetch the user's subscriptions
-        }
-        this.setState({
-            authState: authState,
-            popularPodcasts: PopularPodcastsStore.get(),
-            userSubscriptions: SubscriptionsStore.getSubscriptions("me") || [   ]
-        });
     }
 });
 
-module.exports = Home
+export default Home;

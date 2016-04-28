@@ -1,5 +1,5 @@
-const React = require("react");
-const ReactDOM = require("react-dom")
+import React from "react";
+import ReactDOM from "react-dom";
 
 const Image = React.createClass({
     render(){
@@ -36,4 +36,4 @@ const Image = React.createClass({
     }
 });
 
-module.exports = Image;
+export default Image;

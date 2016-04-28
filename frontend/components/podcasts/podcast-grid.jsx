@@ -1,6 +1,6 @@
-const React = require("react");
-const PodcastTile = require("./podcast-tile.jsx");
-const Spinner = require("../common/spinner.jsx");
+import React from "react";
+import PodcastTile from "./podcast-tile.jsx";
+import  Spinner from "../common/spinner.jsx";
 
 const PodcastGrid = React.createClass({
     render(){
@@ -17,4 +17,4 @@ const PodcastGrid = React.createClass({
     }
 });
 
-module.exports = PodcastGrid;
+export default PodcastGrid;

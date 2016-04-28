@@ -1,5 +1,5 @@
-const React = require("react");
-const ReactModal = require("react-modal");
+import React from "react";
+import ReactModal from "react-modal";
 
 const Dialog = React.createClass({
     componentWillMount(){
@@ -22,4 +22,4 @@ const Dialog = React.createClass({
     }
 });
 
-module.exports = Dialog;
+export default Dialog;

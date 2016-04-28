@@ -1,21 +1,13 @@
-const React = require("react");
-const ListenerMixin = require("alt/mixins/ListenerMixin");
+import React from "react";
 
-const PodcastsActions = require("../../actions/podcast-actions");
-const SubscriptionsStore = require("../../stores/subscriptions-store");
+import Spinner from "../common/spinner.jsx";
+import Dialog from "../common/dialog.jsx";
+import CheckboxList from "../common/checkbox-list.jsx";
+import parseXML from "../../xml";
 
-const Spinner = require("../common/spinner.jsx");
-const Dialog = require("../common/dialog.jsx");
-const CheckboxList = require("../common/checkbox-list.jsx");
-const parseXML = require("../../xml");
-
-const utils = require("../../utils");
+import utils from "../../utils";
 
 const ImportButton = React.createClass({
-    mixins: [ListenerMixin],
-    componentWillMount(){
-        this.listenTo(SubscriptionsStore, this.storeDidChange);
-    },
     render(){
         var element;
         if(this.state.progress == null){
@@ -94,4 +86,4 @@ const ImportButton = React.createClass({
     }
 });
 
-module.exports = ImportButton;
+export default ImportButton;

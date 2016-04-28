@@ -1,7 +1,7 @@
-const React = require("react");
-const Link = require("react-router").Link;
+import React from "react";
+import {Link} from "react-router";
 
-const Image = require("../common/image.jsx");
+import Image from "../common/image.jsx";
 
 const PodcastTile = React.createClass({
     render(){
@@ -18,4 +18,4 @@ const PodcastTile = React.createClass({
     }
 });
 
-module.exports = PodcastTile;
+export default PodcastTile;

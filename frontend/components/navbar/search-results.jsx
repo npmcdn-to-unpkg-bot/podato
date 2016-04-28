@@ -1,8 +1,8 @@
-const React = require("react");
-const Link = require("react-router").Link;
+import React from "react";
+import {Link} from "react-router";
 
-const Image = require("../common/image.jsx");
-const Spinner = require("../common/spinner.jsx");
+import Image from "../common/image.jsx";
+import Spinner from"../common/spinner.jsx";
 
 
 const SearchResults = React.createClass({
@@ -12,7 +12,7 @@ const SearchResults = React.createClass({
             top: "100%",
             left: 0,
             right: 0
-        }
+        };
         return (
             <div className="bg-white border border-black m0 p0" styles={styles}>
                 <div className="clearfix" style={{display: this.props.fetching ? "block": "none"}}>
@@ -58,4 +58,4 @@ const SearchResults = React.createClass({
     }
 });
 
-module.exports = SearchResults;
+export default SearchResults;

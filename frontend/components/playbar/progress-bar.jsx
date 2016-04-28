@@ -1,10 +1,8 @@
-const React = require("react");
-const ReactDOM = require('react-dom');
-const ListenerMixin = require("alt/mixins/ListenerMixin");
+import React from "react";
+import ReactDOM from "react-dom";
 
-const PlaybackActions = require("../../actions/playback-actions");
-
-const utils = require("../../utils")
+import utils from "../../utils";
+import {seek} from "../../actions/playback-actions";
 
 const ProgressBar = React.createClass({
     render(){
@@ -35,7 +33,7 @@ const ProgressBar = React.createClass({
             transform: "translate("+this.state.pointerX+"px, -16px) translate(-50%, 0)",
             display: this.state.pointerX ? "block": "none",
             padding: "0.1em"
-        }
+        };
         const pointerTriangle = {
             width: "0",
             height: "0",
@@ -65,10 +63,9 @@ const ProgressBar = React.createClass({
         this.setState({pointerX: null});
     },
     click(e){
-        PlaybackActions.seek(this.state.pointerProgress * this.props.duration);
+        seek(this.state.pointerProgress * this.props.duration);
     },
     getInitialState(){
-        console.log("duration: "+this.props.duration);
         return {
             pointerX: null,
             pointerProgress: null,
@@ -76,4 +73,4 @@ const ProgressBar = React.createClass({
     }
 });
 
-module.exports = ProgressBar;
+export default ProgressBar;
