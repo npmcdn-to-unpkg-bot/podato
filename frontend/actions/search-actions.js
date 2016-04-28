@@ -1,21 +1,21 @@
-const flux = require("../flux");
-const api = require("../api");
-const utils = require("../utils")
+import utils from "../utils";
+import { createAction, assignAll } from "redux-act";
 
-const SearchActions = flux.createActions(class UserActions {
-    search(query){
-        return new Promise((resolve, reject) => {
-            utils.fetchJSONP("https://itunes.apple.com/search", {
-                term: query,
-                media: "podcast"
-            }).then((result) => {
-                console.log("search result:");
-                console.log(result);
-                this.dispatch(result.results);
-                resolve();
-            })
+import store from '../store.js';
+
+export const searchProgress = createAction("Indicates that a search is in progress");
+export const searchComplete = createAction("Indicates that a search is complete, and results have been returned.");
+
+assignAll([searchProgressrogress, seachComplete], store);
+
+export function search(query){
+    searchProgress();
+    return new Promise(() => {
+        utils.fetchJSONP("https://itunes.apple.com/search",  {
+            term: query,
+            media: "podcast"
+        }).then((result) => {
+            searchComplete(result.results);
         });
-    }
-});
-
-module.exports = SearchActions;
+    });
+}

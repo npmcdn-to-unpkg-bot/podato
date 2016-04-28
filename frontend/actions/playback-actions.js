@@ -1,34 +1,39 @@
-const flux = require("../flux");
-const api = require("../api");
+import PlaybackManager from "../playback-manager.js";
+import { createAction assignAll } from "redux-act";
 
-const PlaybackManager = require("../playback-manager.js");
+import store from '../store.js';
 
-const PlaybackActions = flux.createActions(class UserActions {
-    playEpisode(episode){
-        PlaybackManager.setEpisode(episode);
-        PlaybackManager.play();
-        this.dispatch(episode);
-    }
+export const setEpisode = createAction("Sets the currently playing episode")
+export const setPlaying = createAction("Sets whether the player is currently playing media, or stopped/paused");
+export const setPosition = createAction("Sets the playback position in seconds");
+export const setDuration = createAction("Sets the duration of the currently playing media.")
+assignAll([setEpisode, setPlaying, setPosition, setDuration], store);
 
-    pause(){
-        PlaybackManager.pause();
-        this.dispatch(true);
-    }
+export function playEpisode(episode){
+    setEpisode(episode);
+    setPlaying(true);
+    PlaybackManager.setEpisode(episode);
+    PlaybackManager.play();
+}
 
-    resume(){
-        PlaybackManager.play();
-        this.dispatch(true);
-    }
+export function pause(){
+    setPlaying(false);
+    PlaybackManager.pause();
+}
 
-    seek(secs){
-        PlaybackManager.seek(secs);
-    }
+export function resume(){
+    setPlaying(true);
+    PlaybackManager.play();
+}
 
-    timeUpdate(pb){
-        this.dispatch(pb);
-    }
+export function seek(secs){
+    setPosition(secs);
+    PlaybackManager.seek(secs)
+}
+
+
+PlaybackManager.on("time", (playback) => {
+    setPosition(playback.getCurrentTime());
+    setDuration(playback.getDuration());
 });
 
-PlaybackManager.on("time", PlaybackActions.timeUpdate.bind(PlaybackActions));
-
-module.exports = PlaybackActions;
