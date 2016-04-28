@@ -8,7 +8,8 @@ module.exports = {
     devtool: "#source-map",
     bail: true,
     entry: {
-        graphiql: "./frontend/graphql.entry.jsx"
+        graphiql: "./frontend/graphql.entry.jsx",
+        main: "./frontend/main.entry.jsx"
     },
     output: {
         path: path.join(__dirname, "main/static/"),
