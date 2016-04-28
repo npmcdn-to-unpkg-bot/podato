@@ -1,5 +1,5 @@
 import PlaybackManager from "../playback-manager.js";
-import { createAction assignAll } from "redux-act";
+import {createAction, assignAll} from "redux-act";
 
 import store from '../store.js';
 
