@@ -36,4 +36,4 @@ const PlayBar = React.createClass({
     }
 });
 
-export default connect((state) => state.get("playback").toObject())(Playbar);
+export default connect((state) => state.get("playback").toObject())(PlayBar);

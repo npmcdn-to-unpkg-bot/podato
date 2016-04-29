@@ -2,7 +2,7 @@ import { createReducer } from "redux-act";
 import Immutable from "immutable";
 import {searchProgress, searchComplete} from "../actions/search-actions";
 
-export default playbackReducer = createReducer({
+export default createReducer({
     [searchProgress]: (state, payload) => state.merge({loading: true, results: []}),
     [searchComplete]: (state, payload) => state.merge({loading: false, results: payload})
 }, Immutable.Map({

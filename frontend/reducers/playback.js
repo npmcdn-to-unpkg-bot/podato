@@ -2,7 +2,7 @@ import { createReducer } from "redux-act";
 import Immutable from "immutable";
 import {setPlaying, setPosition, setDuration, setEpisode} from "../actions/playback-actions";
 
-export default playbackReducer = createReducer({
+export default createReducer({
     [setEpisode]: (state, payload) => state.set("episode", payload),
     [setDuration]: (state, payload) => state.set("duration", payload),
     [setPlaying]: (state, payload) => state.set("playing", payload),

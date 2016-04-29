@@ -6,7 +6,7 @@ import store from '../store.js';
 export const searchProgress = createAction("Indicates that a search is in progress");
 export const searchComplete = createAction("Indicates that a search is complete, and results have been returned.");
 
-assignAll([searchProgressrogress, seachComplete], store);
+assignAll([searchProgress, searchComplete], store);
 
 export function search(query){
     searchProgress();

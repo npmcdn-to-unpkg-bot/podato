@@ -77,4 +77,4 @@ const Podcast = React.createClass({
     }
 });
 
-export default defaultPodcast;
+export default tePodcast;
