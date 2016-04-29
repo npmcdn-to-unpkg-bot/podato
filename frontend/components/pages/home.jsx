@@ -1,4 +1,5 @@
 import React from "react";
+import Relay from "react-relay";
 
 import LoginButton from "../auth/login-button.jsx"
 import PodcastGrid from "../podcasts/podcast-grid.jsx";
@@ -59,4 +60,12 @@ const Home = React.createClass({
     }
 });
 
-export default Home;
+export default Relay.createContainer(Home, {
+    fragments: {
+        currentUser: () => Relay.QL`
+        fragment on UserNode {
+            username
+        }
+        `
+    }
+});

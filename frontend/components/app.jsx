@@ -6,7 +6,7 @@ const App = React.createClass({
     render() {
         return (
             <div className="clearfix">
-                <Navbar />
+                <Navbar currentUser={this.props.currentUser} />
                 <div className="container mt4">
                     {this.props.children}
                 </div>
@@ -16,4 +16,13 @@ const App = React.createClass({
     }
 });
 
-export default App
+export default Relay.createContainer(App, {
+    fragments: {
+        currentUser: () => Relay.QL`
+            fragment on UserNode {
+                ${Navbar.getFragment("currentUser")}
+            }
+        `
+    }
+});
+

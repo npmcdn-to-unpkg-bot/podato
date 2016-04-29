@@ -23,7 +23,10 @@ module.exports = {
                 loader: 'babel', // 'babel-loader' is also a legal name to reference
                 query: {
                     presets: ['react', 'es2015'],
-                    cacheDirectory: true
+                    cacheDirectory: true,
+                    plugins: [
+                        path.join(__dirname, 'babel-relay-plugin')
+                    ]
                 }
             }
         ]
